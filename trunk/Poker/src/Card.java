@@ -13,11 +13,11 @@ public class Card{
 	/**
 	 * @param picture figura karty od 2 do 10 i od J do A
 	 */
-	char picture;
+	short picture;
 	/**
-	 * @param color kolor karty od 0 do 3 {kier,pik,karo,trafl} 
+	 * @param color kolor karty od 0 do 3 {trefl,karo,kier,pik} 
 	 */
-	char color;
+	short color;
 	/**
 	 * miejsce przechowywania obrazków karty
 	 */
@@ -33,7 +33,7 @@ public class Card{
 	 * @param imgA obrazek 
 	 * @param stat stan karty 
 	 */
-	Card(char pic,char col,short stat){
+	Card(short pic,short col,short stat){
 		picture=pic;
 		col=col;
 		state=stat;
