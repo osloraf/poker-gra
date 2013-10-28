@@ -2,10 +2,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * 
- */
-
-/**
  * @author gravoo
  *	Klasa Card reprezentuje karte
  */
