@@ -33,11 +33,11 @@ public class Card{
 	 * @param imgA obrazek 
 	 * @param stat stan karty 
 	 */
-	Card(char pic,char col,BufferedImage imgA,short stat){
+	Card(char pic,char col,short stat){
 		picture=pic;
 		col=col;
 		state=stat;
-		img=imgA;
+		//img=imgA;
 		
 	}
 	
