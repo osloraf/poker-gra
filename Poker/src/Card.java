@@ -26,7 +26,7 @@ public class Card{
 	 * Konstruktor przyjmujacy wartosc danej karty i kolor
 	 * @param val wartosc
 	 * @param col kolor
-	 * @param imgA obrazek 
+	 * 
 	 * @param stat stan karty 
 	 */
 	Card(short pic,short col,short stat){

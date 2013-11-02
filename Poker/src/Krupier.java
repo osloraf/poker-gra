@@ -1,7 +1,18 @@
 import java.util.Random;
-
+/**
+ * Klasa Krupier odpowiada za tasowanie, rozdawanie i przyjmowanie 
+ * kart od graczy 
+ * 
+ *
+ */
 public class Krupier extends Deck {
+	/**
+	 * @param deck obiekt reprezentujacy talie kart
+	 */
 	Deck deck;
+	/**
+	 * @param random obiekt odpowiedzialny za losowanie
+	 */
 	Random random;
 	short ilosc_kart_wydanych;
 	int rozmiar=52-1;
