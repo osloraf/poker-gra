@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class Card{
 	/**
-	 * @param picture figura karty od 2 do 10 i od J do A
+	 * @param picture figura karty od 2 do 10 i od J=11 do A=14
 	 */
 	private short picture;
 	/**
@@ -36,12 +36,7 @@ public class Card{
 		//img=imgA;
 		
 	}
-	public void show(){
-		System.out.println(picture);
-		System.out.println(color);
-		System.out.println(state);
-		
-	}
+	
 	
 
 }
