@@ -3,6 +3,7 @@
  */
 
 /**
+ * Klasa reprezentujaca gracza w grze
  * @author rafal
  *
  */
