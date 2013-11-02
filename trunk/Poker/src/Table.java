@@ -8,5 +8,8 @@
  *co dzieje się na stole
  */
 public class Table {
+	
+	
+	
 
 }
