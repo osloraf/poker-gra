@@ -31,9 +31,15 @@ public class Card{
 	 */
 	Card(short pic,short col,short stat){
 		picture=pic;
-		col=col;
+		color=col;
 		state=stat;
 		//img=imgA;
+		
+	}
+	public void show(){
+		System.out.println(picture);
+		System.out.println(color);
+		System.out.println(state);
 		
 	}
 	
