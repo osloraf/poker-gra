@@ -8,9 +8,9 @@ public final class Bot extends Player{
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	Bot(){
+		this.ilosc_kart=0;
 	}
 
 	@Override
@@ -28,6 +28,15 @@ public final class Bot extends Player{
 	@Override
 	void wymien_karty() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void get_card(Card karta) {
+		
+		this.karty[ilosc_kart]=karta;
+		this.ilosc_kart++;
+		
 		
 	}
 

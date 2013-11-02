@@ -8,6 +8,12 @@
  *
  */
 public final class Human extends Player {
+	
+	Human(){
+		this.ilosc_kart=0;
+		
+		
+	}
 
 	/* (non-Javadoc)
 	 * @see Player#uklad()
@@ -34,6 +40,13 @@ public final class Human extends Player {
 	void wymien_karty() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void get_card(Card karta) {
+		this.karty[ilosc_kart]=karta;
+		this.ilosc_kart++;
+		
 	}
 
 }
