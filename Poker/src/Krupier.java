@@ -21,7 +21,7 @@ public class Krupier extends Deck {
 	/**
 	 * @param rozmiar rozmiar talii 
 	 */
-	int rozmiar=51;
+	int rozmiar=52;
 	Krupier() {
 		deck = new Deck();
 		ilosc_kart_wydanych=0;
@@ -31,7 +31,7 @@ public class Krupier extends Deck {
 
 	/**
 	 * Funkcja losujaca karte z talii 
-	 * @return
+	 * @return zwraca wylosowaną kartę
 	 */
 	public Card wydaj_karte() {
 		int karta=random.nextInt(rozmiar-ilosc_kart_wydanych);

@@ -7,6 +7,14 @@ import java.io.IOException;
  */
 public class Card{
 	/**
+	 * @param colop[] tablica przechowujaca znaki kolorów
+	 */
+	char colo[]={'T','K','R','P'};
+	/**
+	 * @param pictu[] tablica przechowujaca wartosci kart
+	 */
+	char pictu[]={'2','3','4','5','6','7','8','9','1','J','D','K','A'};
+	/**
 	 * @param picture figura karty od 2 do 10 i od J=11 do A=14
 	 */
 	private short picture;
@@ -24,7 +32,7 @@ public class Card{
 	private short state;
 	/**
 	 * Konstruktor przyjmujacy wartosc danej karty i kolor
-	 * @param val wartosc
+	 * @param pic figura
 	 * @param col kolor
 	 * 
 	 * @param stat stan karty 
@@ -35,6 +43,9 @@ public class Card{
 		state=stat;
 		//img=imgA;
 		
+	}
+	public void draw(){
+		System.out.println(pictu[picture-2]+" "+colo[color]+" "+state);
 	}
 	
 	

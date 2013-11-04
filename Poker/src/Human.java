@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * 
  */
@@ -9,10 +11,11 @@
  */
 public final class Human extends Player {
 	
-	Human(){
+	
+	Human(String name){
 		this.ilosc_kart=0;
-		
-		
+		this.karty_na_reku=new LinkedList();
+		nazwa_gracza=name;
 	}
 
 	/* (non-Javadoc)
@@ -37,16 +40,33 @@ public final class Human extends Player {
 	 * @see Player#wymien_karty()
 	 */
 	@Override
-	void wymien_karty() {
-		// TODO Auto-generated method stub
-
+	public void wymien_karty(short poz) {
+		karty_na_reku.remove(poz);
 	}
 
 	@Override
+	/**
+	 * funkcja przyjmuje jedna wylosowana karte od krupiera i dodaje ja do swojej
+	 * prywatnej talii
+	 */
 	public void get_card(Card karta) {
-		this.karty[ilosc_kart]=karta;
-		this.ilosc_kart++;
+		karty_na_reku.add(karta);
+		ilosc_kart++;
+	}
+
+	@Override
+	public void draw() {
+		for(int i=0;i<ilosc_kart;i++){
+			Card karta=karty_na_reku.get(i);
+			karta.draw();
+			
+		}
+	}
+
+	@Override
+	public String get_name() {
 		
+		return nazwa_gracza;
 	}
 
 }
