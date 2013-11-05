@@ -73,7 +73,7 @@ public class Table {
 				+ kr.ustal_zwyciezce(players).nazwa_gracza+"\n\n");
 
 		for (int i = 0; i < ilosc_graczy; i++) {
-			System.out.print("\n\nKarty Gracza" + players[i].nazwa_gracza+"\n");
+			System.out.print("\n\nKarty Gracza: " + players[i].nazwa_gracza+":\n");
 			players[i].draw();
 		}
 
