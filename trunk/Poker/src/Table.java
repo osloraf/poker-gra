@@ -28,16 +28,14 @@ public class Table {
 		b1.get_card(kr.wydaj_karte());
 		b2.get_card(kr.wydaj_karte());
 		b3.get_card(kr.wydaj_karte());}
-		
+		p1.arange();
 			System.out.println(p1.get_name());
 			System.out.println(b1.get_name());
 			System.out.println(b2.get_name());
 			System.out.println(b3.get_name());
 			
 		p1.draw();
-		b1.draw();
-		b2.draw();
-		b3.draw();
+		
 		
 		
 	}
