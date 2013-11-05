@@ -13,13 +13,13 @@ public class Table {
 
 	int ilosc_graczy;
 	Player[] players;
-	Bot[]	boty;
+	Bot[] boty;
 
 	Table(int gracze) {
 
 		ilosc_graczy = gracze;
 		players = new Player[ilosc_graczy];
-		boty=new Bot[ilosc_graczy-1];
+		boty = new Bot[ilosc_graczy - 1];
 		System.out.println(ilosc_graczy);
 		Scanner odczyt = new Scanner(System.in);
 
@@ -33,8 +33,8 @@ public class Table {
 
 		players[0] = p1;
 		for (int i = 1; i < ilosc_graczy; i++) {
-			boty[i-1] = new Bot("bot_" + i);
-			players[i]=boty[i-1];
+			boty[i - 1] = new Bot("bot_" + i);
+			players[i] = boty[i - 1];
 		}
 		/**
 		 * Rozdaje karty
@@ -49,26 +49,33 @@ public class Table {
 
 		}
 		players[0].draw();
-	
-		
 
-		for (int i = 0; i < ilosc_graczy-1; i++) {
+		for (int i = 0; i < ilosc_graczy - 1; i++) {
 			if (boty[i].pragnienie()) {
-				short l_kart = boty[i].wymien_karty();	//liczba kart do wymiany
+				short l_kart = boty[i].wymien_karty(); // liczba kart do wymiany
 				for (int j = 0; j < l_kart; j++) {
-					boty[j].get_card(kr.wydaj_karte());
+					boty[i].get_card(kr.wydaj_karte());
 				}
+				boty[i].arrange();
 			}
 		}
-		
-		int do_wymiany=p1.wymien_karty();
-		for(int i=0;i<do_wymiany;i++){
+
+		int do_wymiany = p1.wymien_karty();
+		for (int i = 0; i < do_wymiany; i++) {
 			p1.get_card(kr.wydaj_karte());
 		}
 		players[0].arrange();
 		players[0].draw();
-		players[0].check();
-		
+		for (int i = 0; i < ilosc_graczy; i++) {
+			players[i].check();
+		}
+		System.out.println("Wygrał gracz "
+				+ kr.ustal_zwyciezce(players).nazwa_gracza);
+
+		for (int i = 0; i < ilosc_graczy; i++) {
+			System.out.println("Karty Gracza" + players[i].nazwa_gracza);
+			players[i].draw();
+		}
 
 	}
 
