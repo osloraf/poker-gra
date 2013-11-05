@@ -50,7 +50,6 @@ public abstract class Player {
 		}
 	}
 
-	public abstract void wymien_karty();
 
 	/**
 	 * wypisuje karty
@@ -127,18 +126,36 @@ public abstract class Player {
 		}
 
 		private static Boolean check_strit(LinkedList<Card> cards) {
-			return null;
-
+			short a=cards.get(0).get_Picture();
+			for(int i=0;i<5;i++)
+			{
+				if(a+i!=cards.get(i).get_Picture()+i)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 
 		private static Boolean check_color(LinkedList<Card> cards) {
-			return null;
+			short a=cards.get(0).get_Color();
+			for(int i=0;i<5;i++)
+			{
+				if(a!=cards.get(i).get_Color())
+				{
+					return false;
+				}
+			}
+			return true;
 
 		}
 
 		private static Boolean check_full(LinkedList<Card> cards) {
-			return null;
-
+			if(((check_double(cards)) && (check_triple(cards)) && cards.get(0).get_Picture()!=cards.get(4).get_Picture()))
+			{
+				return true;
+			}
+			return false;
 		}
 
 		private static Boolean check_four(LinkedList<Card> cards) {
