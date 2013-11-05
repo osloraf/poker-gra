@@ -18,8 +18,9 @@ public abstract class Player {
 	protected int ilosc_kart;
 	public String nazwa_gracza;
 	protected LinkedList<Card> karty_na_reku;
-	protected int nr_ukladu;
 	protected Random randomizer;
+	protected int weight_of_conf;
+	protected int weight_card;
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy
@@ -75,7 +76,7 @@ public abstract class Player {
 	}
 
 	public static class Configurations {
-		private int weight_of_card;
+		public static int weight_of_card=0;
 
 		public static int check_conf(LinkedList<Card> cards) {
 			if (cards.size() != 5)
@@ -120,6 +121,7 @@ public abstract class Player {
 			for (int i = 0; i < 4; i++) {
 				if (cards.get(i).get_Picture() == cards.get(i + 1)
 						.get_Picture()) {
+					weight_of_card=cards.get(i).get_Picture();
 					return true;
 				}
 
@@ -152,6 +154,7 @@ public abstract class Player {
 						.get_Picture())
 						&& (cards.get(i + 1).get_Picture() == cards.get(i + 2)
 								.get_Picture()))
+					weight_of_card=cards.get(i).get_Picture();
 					return true;
 			}
 			return false;
@@ -185,6 +188,9 @@ public abstract class Player {
 				if ((cards.get(0).get_Picture() == cards.get(1).get_Picture())
 						&& (cards.get(3).get_Picture() == cards.get(4)
 								.get_Picture())) {
+					weight_of_card=cards.get(0).get_Picture();
+					if(cards.get(4).get_Picture()>weight_of_card)
+						weight_of_card=cards.get(4).get_Picture();
 					return true;
 				}
 			}
@@ -199,6 +205,7 @@ public abstract class Player {
 								.get_Picture())
 						&& (cards.get(i + 2).get_Picture() == cards.get(i + 3)
 								.get_Picture())) {
+					weight_of_card=cards.get(i).get_Picture();
 					return true;
 				}
 			}
