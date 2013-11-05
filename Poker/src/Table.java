@@ -36,7 +36,7 @@ public class Table {
 		Player.Configurations.check_conf(p1.karty_na_reku);
 		System.out.println("\n");
 		p1.draw();
-		
+		b1.draw();
 		
 		
 	}
