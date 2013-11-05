@@ -27,7 +27,7 @@ public Boolean pragnienie(){
 
 public short wymien_karty() {
 		int i=0;
-		short poz=(short)randomizer.nextInt(3);
+		short poz=(short)randomizer.nextInt(4);
 		while(i<poz){
 			karty_na_reku.remove();
 			ilosc_kart--;
