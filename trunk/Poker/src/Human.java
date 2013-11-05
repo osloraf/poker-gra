@@ -19,11 +19,7 @@ public final class Human extends Player {
 		nazwa_gracza = name;
 	}
 
-	private void pokaz_karty() {
-		for (int i = 0; i < karty_na_reku.size(); i++) {
-			karty_na_reku.get(i).draw();
-		}
-	}
+
 
 	public int wymien_karty() {
 		System.out.print("Czy chcesz wymieniæ kartê y/n ");
