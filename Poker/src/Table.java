@@ -12,7 +12,7 @@ import java.util.Random;
 public class Table {
 	
 	Table(){
-		Random random = new Random();
+		 
 		
 		Krupier kr=new Krupier();
 		Human p1=new Human("BoB");
@@ -36,7 +36,7 @@ public class Table {
 		Player.Configurations.check_conf(p1.karty_na_reku);
 		System.out.println("\n");
 		p1.draw();
-		b1.draw();
+		
 		
 		
 	}
