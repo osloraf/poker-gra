@@ -19,11 +19,22 @@ public final class Bot extends Player{
 		randomizer=new Random();
 		
 	}
-
+public Boolean pragnienie(){
+	Boolean poz=randomizer.nextBoolean();
+	if(poz) return true;
+	return false;
+}
 
 public short wymien_karty() {
+		int i=0;
+		short poz=(short)randomizer.nextInt(3);
+		while(i<poz){
+			karty_na_reku.remove();
+			ilosc_kart--;
+			i++;
+		}
 		
-		short poz=(short)randomizer.nextInt(4);
+		
 		return poz;
 		
 	}

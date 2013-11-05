@@ -13,7 +13,7 @@ public class Table {
 	
 	Table(){
 		 
-		
+		int ilosc_graczy=1;
 		Krupier kr=new Krupier();
 		Human p1=new Human("BoB");
 		Bot b1=new Bot("B1");
@@ -34,14 +34,17 @@ public class Table {
 		b2.arrange();
 		b3.arrange();
 		
-		p1.wymien_karty();
+		//p1.wymien_karty();
 		b1.draw();
 		System.out.println("");
 
-		
-		b1.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
-		b2.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
-		b3.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
+		for(int i=0;i<ilosc_graczy;i++){
+		if(b1.pragnienie()){
+			short ch=b1.wymien_karty();
+			for(int j=0;j<ch-1;j++){
+				b1.get_card(kr.wydaj_karte());
+			}
+		}}
 		
 		b1.draw();
 		
