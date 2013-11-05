@@ -108,7 +108,7 @@ public abstract class Player {
 			}
 			
 
-			return 0;
+			return weight_of_conf;
 		}
 
 		/**
