@@ -25,15 +25,48 @@ public abstract class Player {
 	 * @param poz
 	 *            ilosc kart na reku
 	 */
-	public abstract void get_card(Card karta);
-
-	protected abstract void arrange(); // sprawdz uklad;
+	public void get_card(Card karta) {
+		karty_na_reku.add(karta);
+		ilosc_kart++;
+	};
+	/**
+	 * Uklada karty w kolejnosci od najslabszej figury do najmocniejszej
+	 */
+	protected void arrange() {
+		Card tmp;
+		int i=0, j,t=0;
+		  for(i = 0; i < ilosc_kart; i++){
+		  for(j = 1; j < (ilosc_kart-i); j++){
+		  if(karty_na_reku.get(j-1).get_Picture() > karty_na_reku.get(j).get_Picture()){
+			  tmp = karty_na_reku.get(j-1);
+			  karty_na_reku.set(j-1,karty_na_reku.get(j));
+			  karty_na_reku.set(j, tmp);
+		  }
+		  }
+		  }		
+	} 
 
 	public abstract void wymien_karty(short poz);
 
-	abstract void draw();
-
-	public abstract String get_name();
+	/**
+	 * wypisuje karty
+	 */
+	public void draw() {
+		for(int i=0;i<ilosc_kart;i++){
+			Card karta=karty_na_reku.get(i);
+			karta.draw();
+			
+		}
+	}
+	/**
+	 * wypisuje nazwe gracza
+	 * @return nazwa gracza
+	 */
+	
+	public String get_name() {
+		
+		return nazwa_gracza;
+	}
 
 	public static class Configurations {
 		private static int last_checked_card;
