@@ -66,16 +66,16 @@ public class Krupier extends Deck {
 
 	public Player ustal_zwyciezce(Player players[]) {
 		int size = players.length - 1;
-		for (int i = 0; i < players.length - 1; i++) {
-			for (int j = 0; j < size; j++) {
-				if (players[j].get_conf_weight() > players[j + 1]
-						.get_conf_weight()) {
-					Player temp = players[j];
-					players[j] = players[j + 1];
-					players[j + 1] = temp;
+		System.out.println("ilosc graczy"+size);
+		for (int i = 0; i < size; i++) {
+			for (int j = 1; j < size-i; j++) {
+				if (players[j-1].get_conf_weight() > players[j].get_conf_weight()) {
+					Player temp = players[j-1];
+					players[j-1] = players[j];
+					players[j] = temp;
 				}
 			}
-			size--;
+			
 		}
 		if (players[0].get_conf_weight() == players[1].get_conf_weight()) {
 			if (players[0].get_card_weight() < players[1].get_card_weight()) {
@@ -100,3 +100,6 @@ public class Krupier extends Deck {
 	}
 
 }
+
+
+
