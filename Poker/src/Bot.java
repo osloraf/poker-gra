@@ -49,9 +49,7 @@ public final class Bot extends Player{
 		return nazwa_gracza;
 
 	}
-	/**
-	 * Funkcja układa karty od najwiekszej figuty do najmniejszej
-	 */
+	
 	@Override
 	protected void arrange() {
 		Card tmp;

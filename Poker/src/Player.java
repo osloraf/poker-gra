@@ -38,7 +38,7 @@ public abstract class Player {
 	public static class Configurations {
 		private static int last_checked_card;
 
-		public static int check_conf(ArrayList<Card> cards) {
+		public static int check_conf(LinkedList<Card> cards) {
 			if (cards.size() != 5)
 				return -1;
 			last_checked_card = 0;
@@ -52,11 +52,11 @@ public abstract class Player {
 		}
 
 		/**
-		 * Sprawdza czy w uk³adzie jest para
+		 * Sprawdza czy w ukï¿½adzie jest para
 		 * 
 		 * @return Prawda jak jest
 		 */
-		private static Boolean check_double(ArrayList<Card>cards)
+		private static Boolean check_double(LinkedList<Card>cards)
 		{
 			
 			for(int i=0;i<4;i++)

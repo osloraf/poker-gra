@@ -51,9 +51,10 @@ public final class Human extends Player {
 		return nazwa_gracza;
 	}
 
+
 	@Override
 	/**
-	 * Funkcja uklada karty od najwiekszej do najmniejszej
+	 * 
 	 */
 	protected void arrange() {
 		Card tmp;
