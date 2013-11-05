@@ -83,7 +83,7 @@ public abstract class Player {
 
 		}
 	}
-	private void pokaz_karty() {
+	protected void pokaz_karty() {
 		for (int i = 0; i < karty_na_reku.size(); i++) {
 			karty_na_reku.get(i).draw();
 		}
