@@ -55,7 +55,7 @@ public final class Human extends Player {
 	/**
 	 * Funkcja uklada karty od najwiekszej do najmniejszej
 	 */
-	protected void arange() {
+	protected void arrange() {
 		Card tmp;
 		int i=0, j,t=0;
 		  for(i = 0; i < ilosc_kart; i++){
