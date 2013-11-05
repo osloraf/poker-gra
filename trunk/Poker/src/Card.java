@@ -2,24 +2,28 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * @author gravoo
- *	Klasa Card reprezentuje karte
+ * @author gravoo Klasa Card reprezentuje karte
  */
-public class Card{
+public class Card {
 	/**
-	 * @param colop[] tablica przechowujaca znaki kolorów
+	 * @param colop
+	 *            [] tablica przechowujaca znaki kolorów
 	 */
-	char colo[]={'T','K','R','P'};
+	char colo[] = { 'T', 'K', 'C', 'P' };
 	/**
-	 * @param pictu[] tablica przechowujaca wartosci kart
+	 * @param pictu
+	 *            [] tablica przechowujaca wartosci kart
 	 */
-	char pictu[]={'2','3','4','5','6','7','8','9','1','J','D','K','A'};
+	char pictu[] = { '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'D',
+			'K', 'A' };
 	/**
-	 * @param picture figura karty od 2 do 10 i od J=11 do A=14
+	 * @param picture
+	 *            figura karty od 2 do 10 i od J=11 do A=14
 	 */
 	private short picture;
 	/**
-	 * @param color kolor karty od 0 do 3 {trefl,karo,kier,pik} 
+	 * @param color
+	 *            kolor karty od 0 do 3 {trefl,karo,kier,pik}
 	 */
 	private short color;
 	/**
@@ -27,27 +31,41 @@ public class Card{
 	 */
 	BufferedImage img = null;
 	/**
-	 * @param state stan karty {0 - w talii, 1 - u gracza, 2 do wymiany}
+	 * @param state
+	 *            stan karty {0 - w talii, 1 - u gracza, 2 do wymiany}
 	 */
 	private short state;
+
 	/**
 	 * Konstruktor przyjmujacy wartosc danej karty i kolor
-	 * @param pic figura
-	 * @param col kolor
 	 * 
-	 * @param stat stan karty 
+	 * @param pic
+	 *            figura
+	 * @param col
+	 *            kolor
+	 * 
+	 * @param stat
+	 *            stan karty
 	 */
-	Card(short pic,short col,short stat){
-		picture=pic;
-		color=col;
-		state=stat;
-		//img=imgA;
-		
+	Card(short pic, short col, short stat) {
+		picture = pic;
+		color = col;
+		state = stat;
+		// img=imgA;
+
 	}
-	public void draw(){
-		System.out.println(pictu[picture-2]+" "+colo[color]+" "+state);
+	public short get_Color()
+	{
+		return this.color;
 	}
-	
-	
+	public short get_Picture()
+	{
+		return this.picture;
+	}
+
+	public void draw() {
+		System.out
+				.println(pictu[picture - 2] + " " + colo[color] + " " + state);
+	}
 
 }
