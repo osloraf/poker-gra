@@ -34,7 +34,7 @@ public class Table {
 		b3.arrange();
 		
 		Player.Configurations.check_conf(p1.karty_na_reku);
-		System.out.println(" kurwa \n");
+		System.out.println("\n");
 		p1.draw();
 		
 		

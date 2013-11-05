@@ -43,7 +43,7 @@ public abstract class Player {
 				return -1;
 			last_checked_card = 0;
 
-			if (check_double(cards));
+			if (check_double(cards))
 			{
 				System.out.print("masz pare");
 			}
@@ -58,11 +58,15 @@ public abstract class Player {
 		 */
 		private static Boolean check_double(LinkedList<Card>cards)
 		{
-			
+			short a;
 			for(int i=0;i<4;i++)
 			{
-				if(cards.get(i).get_Picture()==cards.get(i+1).get_Picture());
-				return true;
+				a=cards.get(i).get_Picture();
+				if(a==cards.get(i+1).get_Picture())
+				{
+					return true;
+				}
+				
 			}
 			return false;
 			
