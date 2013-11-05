@@ -65,11 +65,23 @@ public class Krupier extends Deck {
 	}
 
 	public Player ustal_zwyciezce(Player players[]) {
+		
+		sort_on_configuration(players);
+		int wygrywajacy=ilosc_zwyciezcow(players);
+		if(wygrywajacy>1)
+		{
+			sort_on_card(players, wygrywajacy);
+		}
+
+		return players[0];
+	}
+	private void sort_on_configuration(Player[] players)
+	{
 		int size = players.length;
-		System.out.println("ilosc graczy"+size);
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = 1; j < size-i; j++) {
-				if (players[j-1].get_conf_weight() > players[j].get_conf_weight()) {
+				if (players[j-1].get_conf_weight() < players[j].get_conf_weight()) {
 					Player temp = players[j-1];
 					players[j-1] = players[j];
 					players[j] = temp;
@@ -77,21 +89,37 @@ public class Krupier extends Deck {
 			}
 			
 		}
-		if (players[0].get_conf_weight() == players[1].get_conf_weight()) {
-			if (players[0].get_card_weight() < players[1].get_card_weight()) {
-				return players[1];
-			} else if ((players[0].get_card_weight() == players[1]
-					.get_card_weight())
-					&& (players[0].get_highest_card().get_Picture() == players[1]
-							.get_highest_card().get_Picture())) {
-				remis=true;
-				return null;
-						
+	}
+	private void sort_on_card(Player[] players, int ilosc_wygrywajacych)
+	{
+		int size = ilosc_wygrywajacych;
+		
+		for (int i = 0; i < size; i++) {
+			for (int j = 1; j < size-i; j++) {
+				if (players[j-1].get_card_weight() < players[j].get_card_weight()) {
+					Player temp = players[j-1];
+					players[j-1] = players[j];
+					players[j] = temp;
+				}
 			}
-			return players[0];
+			
 		}
-
-		return players[0];
+	}
+	private int ilosc_zwyciezcow(Player[] players)
+	{
+		int ilosc=1;
+		for(int i=0;i<players.length-1;i++)
+		{
+			if(players[i].get_conf_weight()==players[i+1].get_conf_weight())
+			{
+				ilosc++;
+			}
+			else
+			{
+				return ilosc;
+			}
+		}
+		return ilosc;
 	}
 
 	public void przyjmij_karte(Card card) {
