@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -27,7 +27,7 @@ public class TableTest {
 
 	@Test
 	public void test() {
-		Table tester=new Table();
+		
 		
 		
 	}
