@@ -61,6 +61,7 @@ public class Card {
 	public short get_Picture()
 	{
 		return this.picture;
+		
 	}
 
 	public void draw() {
