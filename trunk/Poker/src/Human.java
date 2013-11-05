@@ -18,12 +18,11 @@ public final class Human extends Player {
 		nazwa_gracza=name;
 	}
 
-	/* (non-Javadoc)
-	 * @see Player#wymien_karty()
-	 */
-	@Override
-	public void wymien_karty(short poz) {
-		karty_na_reku.remove(poz);
+	
+	
+
+	public void wymien_karty() {
+		
 	}
 
 	
