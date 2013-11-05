@@ -35,6 +35,7 @@ public class Krupier extends Deck {
 	 */
 	public Card wydaj_karte() {
 		int karta=random.nextInt(rozmiar-ilosc_kart_wydanych);
+		
 		ilosc_kart_wydanych++;
 		Card help=null;
 		help= deck.deck_of_cards.get(karta);
