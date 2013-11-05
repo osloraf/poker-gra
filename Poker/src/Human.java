@@ -39,12 +39,12 @@ public final class Human extends Player {
 			System.out.print("\nPodaj ile kart chcesz wymieniæ, 0-4: ");
 			int ilosc=odczyt.nextInt();
 			int wybor=0;
-			for(int i=0;i<=ilosc;i++)
+			for(int i=0;i<ilosc;i++)
 			{
 				pokaz_karty();
 				System.out.print("Ktora karte chesz wymienic");
 				wybor=odczyt.nextInt();
-				karty_na_reku.remove(wybor);
+				karty_na_reku.remove(wybor-1);
 			}
 		}
 		
