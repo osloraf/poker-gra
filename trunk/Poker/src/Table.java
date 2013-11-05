@@ -28,12 +28,13 @@ public class Table {
 		b1.get_card(kr.wydaj_karte());
 		b2.get_card(kr.wydaj_karte());
 		b3.get_card(kr.wydaj_karte());}
-		p1.arange();
-			System.out.println(p1.get_name());
-			System.out.println(b1.get_name());
-			System.out.println(b2.get_name());
-			System.out.println(b3.get_name());
-			
+		p1.arrange();
+		b1.arrange();
+		b2.arrange();
+		b3.arrange();
+		
+		Player.Configurations.check_conf(p1.karty_na_reku);
+		System.out.println(" kurwa \n");
 		p1.draw();
 		
 		
