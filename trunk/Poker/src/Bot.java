@@ -18,17 +18,6 @@ public final class Bot extends Player{
 		
 	}
 
-	@Override
-	protected int uklad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int nr_ukladu() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void wymien_karty(short poz) {
@@ -59,6 +48,12 @@ public final class Bot extends Player{
 	public String get_name() {
 		return nazwa_gracza;
 
+	}
+
+	@Override
+	protected void arange() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
