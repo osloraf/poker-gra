@@ -38,6 +38,19 @@ public short wymien_karty() {
 		return poz;
 		
 	}
+public int conf_weight()
+{
+	//weight_of_conf=Configurations.check_conf(karty_na_reku);
+	weight_of_conf=0;
+	return weight_of_conf;
+	
+}
+public int card_weight()
+{
+	
+	weight_card=Configurations.weight_of_card;
+	return weight_card;
+}
 
 	
 }
