@@ -1,8 +1,5 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
-
-import com.sun.corba.se.impl.interceptors.PICurrent;
 
 /**
  * 
@@ -40,7 +37,7 @@ public abstract class Player {
 	 */
 	protected void arrange() {
 		Card tmp;
-		int i = 0, j, t = 0;
+		int i = 0, j;
 		for (i = 0; i < ilosc_kart; i++) {
 			for (j = 1; j < (ilosc_kart - i); j++) {
 				if (karty_na_reku.get(j - 1).get_Picture() > karty_na_reku.get(
@@ -70,7 +67,7 @@ public abstract class Player {
 	}
 	public Card get_highest_card()
 	{
-		return karty_na_reku.get(0);
+		return karty_na_reku.get(4);
 	}
 
 	/**

@@ -69,11 +69,11 @@ public class Table {
 		for (int i = 0; i < ilosc_graczy; i++) {
 			players[i].check();
 		}
-		System.out.println("Wygrał gracz "
-				+ kr.ustal_zwyciezce(players).nazwa_gracza);
+		System.out.println("\n\nWygrał gracz "
+				+ kr.ustal_zwyciezce(players).nazwa_gracza+"\n\n");
 
 		for (int i = 0; i < ilosc_graczy; i++) {
-			System.out.println("Karty Gracza" + players[i].nazwa_gracza);
+			System.out.println("\n\nKarty Gracza" + players[i].nazwa_gracza);
 			players[i].draw();
 		}
 
