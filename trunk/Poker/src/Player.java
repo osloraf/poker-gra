@@ -92,6 +92,12 @@ public abstract class Player {
 			if (check_color(cards)) {
 				System.out.print("masz kolor");
 			}
+			if (check_strit(cards)) {
+				System.out.print("masz strit");
+			}
+			if (check_poker(cards)) {
+				System.out.print("masz pokera");
+			}
 
 			return 0;
 		}
@@ -133,7 +139,7 @@ public abstract class Player {
 		private static Boolean check_strit(LinkedList<Card> cards) {
 			short a = cards.get(0).get_Picture();
 			for (int i = 0; i < 5; i++) {
-				if (a + i != cards.get(i).get_Picture() + i) {
+				if (a + i != cards.get(i).get_Picture()) {
 					return false;
 				}
 			}
