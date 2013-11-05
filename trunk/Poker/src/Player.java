@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
+import com.sun.corba.se.impl.interceptors.PICurrent;
+
 /**
  * 
  */
@@ -81,22 +83,26 @@ public abstract class Player {
 			last_checked_card = 0;
 
 			if (check_double(cards)) {
-				System.out.print("masz pare");
+				System.out.print(" masz pare");
 			}
 			if (check_triple(cards)) {
-				System.out.print("masz trojke");
+				System.out.print(" masz trojke");
 			}
 			if (check_full(cards)) {
-				System.out.print("masz fulla");
+				System.out.print(" masz fulla");
 			}
 			if (check_color(cards)) {
-				System.out.print("masz kolor");
+				System.out.print(" masz kolor");
 			}
 			if (check_strit(cards)) {
-				System.out.print("masz strit");
+				System.out.print(" masz strit");
 			}
 			if (check_poker(cards)) {
-				System.out.print("masz pokera");
+				System.out.print(" masz pokera");
+			}
+			if(check_dwo_double(cards))
+			{
+				System.out.print(" Masz 2 pary");
 			}
 
 			return 0;
@@ -120,8 +126,21 @@ public abstract class Player {
 		}
 
 		private static Boolean check_dwo_double(LinkedList<Card> cards) {
-			return null;
+			for (int i = 0; i < 2; i++) {
+				if (cards.get(i).get_Picture() == cards.get(i + 1)
+						.get_Picture()) {
+					for (int j = i; j < 4; j++) {
+						if ((cards.get(j).get_Picture() == cards.get(j + 1)
+								.get_Picture())
+								&& (cards.get(i).get_Picture() != cards.get(j)
+										.get_Picture())) {
+							return true;
+						}
+					}
+				}
+			}
 
+			return false;
 		}
 
 		private static Boolean check_triple(LinkedList<Card> cards) {
@@ -170,7 +189,18 @@ public abstract class Player {
 		}
 
 		private static Boolean check_four(LinkedList<Card> cards) {
-			return null;
+			for (int i = 0; i < 2; i++) {
+				if ((cards.get(i).get_Picture() == cards.get(i + 1)
+						.get_Picture())
+						&& (cards.get(i + 1).get_Picture() == cards.get(i + 2)
+								.get_Picture())
+						&& (cards.get(i + 2).get_Picture() == cards.get(i + 3)
+								.get_Picture())) {
+					return true;
+				}
+			}
+
+			return false;
 
 		}
 
