@@ -32,8 +32,8 @@ public final class Human extends Player {
 			ilosc = odczyt.nextInt();
 			int wybor = 0;
 			for (int i = 0; i < ilosc; i++) {
-				pokaz_karty();
-				System.out.print("Ktora karte chesz wymienic");
+				draw();
+				System.out.print("\n\nKtora karte chesz wymienic: ");
 				wybor = odczyt.nextInt();
 				ilosc_kart--;
 				karty_na_reku.remove(wybor - 1);
