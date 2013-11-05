@@ -28,14 +28,27 @@ public class Table {
 		b1.get_card(kr.wydaj_karte());
 		b2.get_card(kr.wydaj_karte());
 		b3.get_card(kr.wydaj_karte());}
+		
 		p1.arrange();
 		b1.arrange();
 		b2.arrange();
 		b3.arrange();
 		
+		p1.wymien_karty();
+		b1.draw();
+		System.out.println("");
+
+		
+		b1.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
+		b2.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
+		b3.karty_na_reku.set(b1.wymien_karty(),kr.wydaj_karte());
+		
+		b1.draw();
+		
+		
 		Player.Configurations.check_conf(p1.karty_na_reku);
 		System.out.println("\n");
-		p1.draw();
+		//p1.draw();
 		
 		
 		

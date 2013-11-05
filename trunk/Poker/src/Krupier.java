@@ -43,6 +43,16 @@ public class Krupier extends Deck {
 		return help;
 
 	}
+	/**
+	 * Krupier przyjmuje karte i wymienia ja na inna z talii
+	 * @param poz
+	 * @return
+	 */
+	public Card zamien_karte(short poz){
+		
+		return null;
+		
+	}
 
 	public void przyjmij_karte(Card card) {
 		deck.deck_of_cards.addLast(card);
