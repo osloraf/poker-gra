@@ -10,6 +10,7 @@ import java.util.LinkedList;
  * 
  */
 public abstract class Player {
+	@SuppressWarnings("unused")
 	private int money;
 	protected int ilosc_kart;
 	public String nazwa_gracza;
@@ -26,7 +27,7 @@ public abstract class Player {
 	 */
 	public abstract void get_card(Card karta);
 
-	protected abstract void arange(); // sprawdz uklad;
+	protected abstract void arrange(); // sprawdz uklad;
 
 	public abstract void wymien_karty(short poz);
 
@@ -61,8 +62,9 @@ public abstract class Player {
 			for(int i=0;i<4;i++)
 			{
 				if(cards.get(i).get_Picture()==cards.get(i+1).get_Picture());
+				return true;
 			}
-			return null;
+			return false;
 			
 		}
 
