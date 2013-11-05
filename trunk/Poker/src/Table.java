@@ -65,7 +65,7 @@ public class Table {
 		for(int i=0;i<do_wymiany;i++){
 			p1.get_card(kr.wydaj_karte());
 		}
-		
+		players[0].arrange();
 		players[0].draw();
 		players[0].check();
 		
