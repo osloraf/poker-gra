@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * 
@@ -10,49 +11,57 @@ import java.util.Random;
  */
 public class Table {
 
-	Table() {
+	int ilosc_graczy;
+	Player[] players;
 
-		int ilosc_graczy = 1;
+	Table(int gracze) {
+		
+
+		ilosc_graczy = gracze;
+		players = new Player[ilosc_graczy];
+		System.out.println(ilosc_graczy);
+		Scanner odczyt = new Scanner(System.in);
+
+		System.out.println("Podaj swoj nick\n");
+
+		String imie = odczyt.nextLine();
+
 		Krupier kr = new Krupier();
-		Human p1 = new Human("BoB");
-		Bot b1 = new Bot("B1");
-		Bot b2 = new Bot("B2");
-		Bot b3 = new Bot("B3");
+
+		Human p1 = new Human(imie);
+
+		players[0] = p1;
+		for (int i = 1; i < ilosc_graczy; i++) {
+			Bot bot = new Bot("bot_" + i);
+			players[i] = bot;
+		}
 		/**
 		 * Rozdaje karty
 		 */
 		for (int i = 0; i < 5; i++) {
-			p1.get_card(kr.wydaj_karte());
-			b1.get_card(kr.wydaj_karte());
-			b2.get_card(kr.wydaj_karte());
-			b3.get_card(kr.wydaj_karte());
-		}
-
-		p1.arrange();
-		b1.arrange();
-		b2.arrange();
-		b3.arrange();
-
-		// p1.wymien_karty();
-		b1.draw();
-		System.out.println("");
-
-		for (int i = 0; i < ilosc_graczy; i++) {
-			if (b1.pragnienie()) {
-				short ch = b1.wymien_karty();
-				for (int j = 0; j < ch; j++) {
-					b1.get_card(kr.wydaj_karte());
+			for (int j = 0; j < ilosc_graczy; j++) {
+				players[j].get_card(kr.wydaj_karte());
 				}
-			}
 		}
+		for(int i=0;i<ilosc_graczy;i++){
+			players[i].arrange();	
+			
+		}
+		players[0].draw();
+	
 
-		b1.arrange();
-		b1.draw();
 
-		Player.Configurations.check_conf(p1.karty_na_reku);
-		System.out.println("\n");
-		// p1.draw();
-
-	}
-
-}
+ // p1.wymien_karty(); b1.draw(); System.out.println("");
+ 
+ //for (int i = 0; i < ilosc_graczy; i++) { if (b1.pragnienie()) { short ch =
+ //b1.wymien_karty(); for (int j = 0; j < ch; j++) {
+ //b1.get_card(kr.wydaj_karte()); } } }
+ 
+// b1.arrange(); b1.draw();
+ 
+// Player.Configurations.check_conf(p1.karty_na_reku); System.out.println("\n");
+ // p1.draw();
+ 
+ }
+ 
+ }
