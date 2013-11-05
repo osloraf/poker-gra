@@ -50,7 +50,6 @@ public abstract class Player {
 		}
 	}
 
-
 	/**
 	 * wypisuje karty
 	 */
@@ -85,7 +84,13 @@ public abstract class Player {
 				System.out.print("masz pare");
 			}
 			if (check_triple(cards)) {
-
+				System.out.print("masz trojke");
+			}
+			if (check_full(cards)) {
+				System.out.print("masz fulla");
+			}
+			if (check_color(cards)) {
+				System.out.print("masz kolor");
 			}
 
 			return 0;
@@ -126,11 +131,9 @@ public abstract class Player {
 		}
 
 		private static Boolean check_strit(LinkedList<Card> cards) {
-			short a=cards.get(0).get_Picture();
-			for(int i=0;i<5;i++)
-			{
-				if(a+i!=cards.get(i).get_Picture()+i)
-				{
+			short a = cards.get(0).get_Picture();
+			for (int i = 0; i < 5; i++) {
+				if (a + i != cards.get(i).get_Picture() + i) {
 					return false;
 				}
 			}
@@ -138,11 +141,9 @@ public abstract class Player {
 		}
 
 		private static Boolean check_color(LinkedList<Card> cards) {
-			short a=cards.get(0).get_Color();
-			for(int i=0;i<5;i++)
-			{
-				if(a!=cards.get(i).get_Color())
-				{
+			short a = cards.get(0).get_Color();
+			for (int i = 0; i < 5; i++) {
+				if (a != cards.get(i).get_Color()) {
 					return false;
 				}
 			}
@@ -151,9 +152,13 @@ public abstract class Player {
 		}
 
 		private static Boolean check_full(LinkedList<Card> cards) {
-			if(((check_double(cards)) && (check_triple(cards)) && cards.get(0).get_Picture()!=cards.get(4).get_Picture()))
-			{
-				return true;
+			if (((check_double(cards)) && (check_triple(cards)) && cards.get(0)
+					.get_Picture() != cards.get(4).get_Picture())) {
+				if ((cards.get(0).get_Picture() == cards.get(1).get_Picture())
+						&& (cards.get(3).get_Picture() == cards.get(4)
+								.get_Picture())) {
+					return true;
+				}
 			}
 			return false;
 		}
@@ -164,7 +169,10 @@ public abstract class Player {
 		}
 
 		private static Boolean check_poker(LinkedList<Card> cards) {
-			return null;
+			if (check_color(cards) && check_strit(cards))
+				return true;
+
+			return false;
 
 		}
 
