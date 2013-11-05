@@ -75,35 +75,38 @@ public abstract class Player {
 	}
 
 	public static class Configurations {
-		private static int last_checked_card;
+		private int weight_of_card;
 
 		public static int check_conf(LinkedList<Card> cards) {
 			if (cards.size() != 5)
 				return -1;
-			last_checked_card = 0;
+			int weight_of_conf = 0;
 
 			if (check_double(cards)) {
-				System.out.print(" masz pare");
+				weight_of_conf = 1;
+			}
+			if (check_dwo_double(cards)) {
+				weight_of_conf = 2;
 			}
 			if (check_triple(cards)) {
-				System.out.print(" masz trojke");
-			}
-			if (check_full(cards)) {
-				System.out.print(" masz fulla");
-			}
-			if (check_color(cards)) {
-				System.out.print(" masz kolor");
+				weight_of_conf = 3;
 			}
 			if (check_strit(cards)) {
-				System.out.print(" masz strit");
+				weight_of_conf = 4;
+			}
+			if (check_color(cards)) {
+				weight_of_conf = 5;
+			}
+			if (check_full(cards)) {
+				weight_of_conf = 6;
+			}
+			if (check_four(cards)) {
+				weight_of_conf = 7;
 			}
 			if (check_poker(cards)) {
-				System.out.print(" masz pokera");
+				weight_of_conf = 8;
 			}
-			if(check_dwo_double(cards))
-			{
-				System.out.print(" Masz 2 pary");
-			}
+			
 
 			return 0;
 		}
