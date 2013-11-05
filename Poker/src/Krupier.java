@@ -65,7 +65,7 @@ public class Krupier extends Deck {
 	}
 
 	public Player ustal_zwyciezce(Player players[]) {
-		int size = players.length - 1;
+		int size = players.length;
 		System.out.println("ilosc graczy"+size);
 		for (int i = 0; i < size; i++) {
 			for (int j = 1; j < size-i; j++) {
