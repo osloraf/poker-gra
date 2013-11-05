@@ -9,13 +9,13 @@ public class Card {
 	 * @param colop
 	 *            [] tablica przechowujaca znaki kolorów
 	 */
-	char colo[] = { 'T', 'K', 'C', 'P' };
+	String colo[] = { "Trefl", "Karo", "Kier", "Pik" };
 	/**
 	 * @param pictu
 	 *            [] tablica przechowujaca wartosci kart
 	 */
-	char pictu[] = { '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'D',
-			'K', 'A' };
+	String pictu[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "D",
+			"K", "A" };
 	/**
 	 * @param picture
 	 *            figura karty od 2 do 10 i od J=11 do A=14
@@ -66,7 +66,7 @@ public class Card {
 
 	public void draw() {
 		System.out
-				.println(pictu[picture - 2] + " " + colo[color] + " " + state);
+				.println(pictu[picture - 2] + " " + colo[color]);
 	}
 
 }
