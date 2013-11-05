@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Random;
 
 
 /**
@@ -15,14 +16,15 @@ public final class Bot extends Player{
 		this.ilosc_kart=0;
 		karty_na_reku=new LinkedList();
 		this.nazwa_gracza=name;
+		randomizer=new Random();
 		
 	}
 
 
-	@Override
-	public void wymien_karty(short poz) {
+public short wymien_karty() {
 		
-		karty_na_reku.remove(poz);
+		short poz=(short)randomizer.nextInt(4);
+		return poz;
 		
 	}
 
