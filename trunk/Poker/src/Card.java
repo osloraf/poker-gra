@@ -66,7 +66,7 @@ public class Card {
 
 	public void draw() {
 		System.out
-				.println(pictu[picture - 2] + " " + colo[color]);
+				.print(pictu[picture - 2] + " " + colo[color]);
 	}
 
 }

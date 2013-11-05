@@ -16,8 +16,8 @@ public abstract class Player {
 	public String nazwa_gracza;
 	protected LinkedList<Card> karty_na_reku;
 	protected Random randomizer;
-	protected int weight_of_conf=0;
-	protected int weight_card=0;
+	protected int weight_conf = 0;
+	protected int weight_card = 0;
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy
@@ -51,13 +51,13 @@ public abstract class Player {
 	}
 
 	public void check() {
-		weight_of_conf = Configurations.check_conf(karty_na_reku);
+		this.weight_conf = Configurations.check_conf(karty_na_reku);
 		weight_card = Configurations.weight_of_card;
 	}
 
 	public int get_conf_weight() {
 
-		return weight_of_conf;
+		return this.weight_conf;
 
 	}
 
@@ -65,8 +65,8 @@ public abstract class Player {
 
 		return weight_card;
 	}
-	public Card get_highest_card()
-	{
+
+	public Card get_highest_card() {
 		return karty_na_reku.get(4);
 	}
 
@@ -77,6 +77,7 @@ public abstract class Player {
 		for (int i = 0; i < ilosc_kart; i++) {
 			Card karta = karty_na_reku.get(i);
 			karta.draw();
+			System.out.print("; "); 
 
 		}
 	}
@@ -169,9 +170,10 @@ public abstract class Player {
 				if ((cards.get(i).get_Picture() == cards.get(i + 1)
 						.get_Picture())
 						&& (cards.get(i + 1).get_Picture() == cards.get(i + 2)
-								.get_Picture()))
+								.get_Picture())) {
 					weight_of_card = cards.get(i).get_Picture();
-				return true;
+					return true;
+				}
 			}
 			return false;
 
