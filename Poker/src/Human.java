@@ -39,10 +39,11 @@ public final class Human extends Player {
 				pokaz_karty();
 				System.out.print("Ktora karte chesz wymienic");
 				wybor = odczyt.nextInt();
+				ilosc_kart--;
 				karty_na_reku.remove(wybor - 1);
 			}
 		}
-
+		
 		return ilosc;
 	}
 
