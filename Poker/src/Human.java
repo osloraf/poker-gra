@@ -52,9 +52,21 @@ public final class Human extends Player {
 	}
 
 	@Override
+	/**
+	 * Funkcja uklada karty od najwiekszej do najmniejszej
+	 */
 	protected void arange() {
-		// TODO Auto-generated method stub
-		
+		Card tmp;
+		int i=0, j,t=0;
+		  for(i = 0; i < ilosc_kart; i++){
+		  for(j = 1; j < (ilosc_kart-i); j++){
+		  if(karty_na_reku.get(j-1).get_Picture() > karty_na_reku.get(j).get_Picture()){
+			  tmp = karty_na_reku.get(j-1);
+			  karty_na_reku.set(j-1,karty_na_reku.get(j));
+			  karty_na_reku.set(j, tmp);
+		  }
+		  }
+		  }		
 	}
 
 }
