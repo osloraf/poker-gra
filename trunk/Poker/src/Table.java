@@ -46,7 +46,7 @@ public class Table {
 			}
 		}
 
-		
+		b1.arrange();
 		b1.draw();
 
 		Player.Configurations.check_conf(p1.karty_na_reku);
