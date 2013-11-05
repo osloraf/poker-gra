@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * 
@@ -16,6 +17,7 @@ public abstract class Player {
 	public String nazwa_gracza;
 	protected LinkedList<Card> karty_na_reku;
 	protected int nr_ukladu;
+	protected Random randomizer;
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy
@@ -29,42 +31,46 @@ public abstract class Player {
 		karty_na_reku.add(karta);
 		ilosc_kart++;
 	};
+
 	/**
 	 * Uklada karty w kolejnosci od najslabszej figury do najmocniejszej
 	 */
 	protected void arrange() {
 		Card tmp;
-		int i=0, j,t=0;
-		  for(i = 0; i < ilosc_kart; i++){
-		  for(j = 1; j < (ilosc_kart-i); j++){
-		  if(karty_na_reku.get(j-1).get_Picture() > karty_na_reku.get(j).get_Picture()){
-			  tmp = karty_na_reku.get(j-1);
-			  karty_na_reku.set(j-1,karty_na_reku.get(j));
-			  karty_na_reku.set(j, tmp);
-		  }
-		  }
-		  }		
-	} 
+		int i = 0, j, t = 0;
+		for (i = 0; i < ilosc_kart; i++) {
+			for (j = 1; j < (ilosc_kart - i); j++) {
+				if (karty_na_reku.get(j - 1).get_Picture() > karty_na_reku.get(
+						j).get_Picture()) {
+					tmp = karty_na_reku.get(j - 1);
+					karty_na_reku.set(j - 1, karty_na_reku.get(j));
+					karty_na_reku.set(j, tmp);
+				}
+			}
+		}
+	}
 
-	public abstract void wymien_karty(short poz);
+	public abstract void wymien_karty();
 
 	/**
 	 * wypisuje karty
 	 */
 	public void draw() {
-		for(int i=0;i<ilosc_kart;i++){
-			Card karta=karty_na_reku.get(i);
+		for (int i = 0; i < ilosc_kart; i++) {
+			Card karta = karty_na_reku.get(i);
 			karta.draw();
-			
+
 		}
 	}
+
 	/**
 	 * wypisuje nazwe gracza
+	 * 
 	 * @return nazwa gracza
 	 */
-	
+
 	public String get_name() {
-		
+
 		return nazwa_gracza;
 	}
 
@@ -76,9 +82,11 @@ public abstract class Player {
 				return -1;
 			last_checked_card = 0;
 
-			if (check_double(cards))
-			{
+			if (check_double(cards)) {
 				System.out.print("masz pare");
+			}
+			if (check_triple(cards)) {
+
 			}
 
 			return 0;
@@ -89,53 +97,56 @@ public abstract class Player {
 		 * 
 		 * @return Prawda jak jest
 		 */
-		private static Boolean check_double(LinkedList<Card>cards)
-		{
-			short a;
-			for(int i=0;i<4;i++)
-			{
-				a=cards.get(i).get_Picture();
-				if(a==cards.get(i+1).get_Picture())
-				{
+		private static Boolean check_double(LinkedList<Card> cards) {
+			for (int i = 0; i < 4; i++) {
+				if (cards.get(i).get_Picture() == cards.get(i + 1)
+						.get_Picture()) {
 					return true;
 				}
-				
+
 			}
 			return false;
-			
+
 		}
 
-		private static Boolean check_dwo_double() {
+		private static Boolean check_dwo_double(LinkedList<Card> cards) {
 			return null;
 
 		}
 
-		private static Boolean check_triple() {
+		private static Boolean check_triple(LinkedList<Card> cards) {
+			for (int i = 0; i < 3; i++) {
+				if ((cards.get(i).get_Picture() == cards.get(i + 1)
+						.get_Picture())
+						&& (cards.get(i + 1).get_Picture() == cards.get(i + 2)
+								.get_Picture()))
+					return true;
+			}
+			return false;
+
+		}
+
+		private static Boolean check_strit(LinkedList<Card> cards) {
 			return null;
 
 		}
 
-		private static Boolean check_strit() {
+		private static Boolean check_color(LinkedList<Card> cards) {
 			return null;
 
 		}
 
-		private static Boolean check_color() {
+		private static Boolean check_full(LinkedList<Card> cards) {
 			return null;
 
 		}
 
-		private static Boolean check_full() {
+		private static Boolean check_four(LinkedList<Card> cards) {
 			return null;
 
 		}
 
-		private static Boolean check_four() {
-			return null;
-
-		}
-
-		private static Boolean check_poker() {
+		private static Boolean check_poker(LinkedList<Card> cards) {
 			return null;
 
 		}
