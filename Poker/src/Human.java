@@ -19,9 +19,13 @@ public final class Human extends Player {
 		nazwa_gracza = name;
 	}
 
+/**
+ * Funkcja odpowiedzialna za wymienianie kart od gracza 
+ * @return jesli ilosc to wszystko w normie jesli -1 to blad wprowadzania danych
+ */
 
-
-	public int wymien_karty() {
+	public int wymien_karty(){
+		
 		System.out.print("Czy chcesz wymienic karty y/n ");
 		Scanner odczyt = new Scanner(System.in);
 		String decyzja;
@@ -39,7 +43,8 @@ public final class Human extends Player {
 				karty_na_reku.remove(wybor - 1);
 			}
 		}
-		
+		else if(decyzja.startsWith("n")) return ilosc;
+		else return -1;
 		return ilosc;
 	}
 
