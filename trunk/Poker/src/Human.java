@@ -68,8 +68,9 @@ public final class Human extends Player {
 					i--;
 					odczyt.nextLine();
 				}
-				odczyt.close();
+				
 			}
+			odczyt.close();
 		} else if (decyzja.startsWith("n")) {
 			odczyt.close();
 			return ilosc;
