@@ -15,7 +15,7 @@ public class Card {
 	 *            [] tablica przechowujaca wartosci kart
 	 */
 	String pictu[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Walet", "Dama",
-			"Król", "As" };
+			"Krol", "As" };
 	/**
 	 * @param picture
 	 *            figura karty od 2 do 10 i od J=11 do A=14
