@@ -130,7 +130,7 @@ public abstract class Player {
 		}
 
 		/**
-		 * Sprawdza czy w uk�adzie jest para
+		 * Sprawdza czy w ukladzie jest para
 		 * 
 		 * @return Prawda jak jest
 		 */
