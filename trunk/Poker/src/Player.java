@@ -77,7 +77,7 @@ public abstract class Player {
 		for (int i = 0; i < ilosc_kart; i++) {
 			Card karta = karty_na_reku.get(i);
 			karta.draw();
-			System.out.print("; "); 
+			System.out.print("; ");
 
 		}
 	}
@@ -202,16 +202,16 @@ public abstract class Player {
 
 		private static Boolean check_full(LinkedList<Card> cards) {
 			if (((check_double(cards)) && (check_triple(cards)) && cards.get(0)
-					.get_Picture() != cards.get(4).get_Picture())) {
-				if ((cards.get(0).get_Picture() == cards.get(1).get_Picture())
-						&& (cards.get(3).get_Picture() == cards.get(4)
-								.get_Picture())) {
-					weight_of_card = cards.get(0).get_Picture();
-					if (cards.get(4).get_Picture() > weight_of_card)
-						weight_of_card = cards.get(4).get_Picture();
-					return true;
-				}
+					.get_Picture() != cards.get(4).get_Picture())
+					&& ((cards.get(0).get_Picture() == cards.get(1)
+							.get_Picture()) && (cards.get(3).get_Picture() == cards
+							.get(4).get_Picture()))) {
+				weight_of_card = cards.get(0).get_Picture();
+				if (cards.get(4).get_Picture() > weight_of_card)
+					weight_of_card = cards.get(4).get_Picture();
+				return true;
 			}
+
 			return false;
 		}
 

@@ -34,7 +34,7 @@ public class Card {
 	 * @param state
 	 *            stan karty {0 - w talii, 1 - u gracza, 2 do wymiany}
 	 */
-	private short state;
+	//private short state;
 
 	/**
 	 * Konstruktor przyjmujacy wartosc danej karty i kolor
@@ -47,10 +47,10 @@ public class Card {
 	 * @param stat
 	 *            stan karty
 	 */
-	Card(short pic, short col, short stat) {
+	Card(short pic, short col) {
 		picture = pic;
 		color = col;
-		state = stat;
+		//state = stat;
 		// img=imgA;
 
 	}
