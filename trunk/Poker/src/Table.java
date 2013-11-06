@@ -59,8 +59,14 @@ public class Table {
 				boty[i].arrange();
 			}
 		}
-
-		int do_wymiany = p1.wymien_karty();
+		
+		int do_wymiany=-1;
+		while(do_wymiany==-1){
+		
+		do_wymiany=p1.wymien_karty();
+		
+			
+		}
 		for (int i = 0; i < do_wymiany; i++) {
 			p1.get_card(kr.wydaj_karte());
 		}
@@ -69,6 +75,7 @@ public class Table {
 		for (int i = 0; i < ilosc_graczy; i++) {
 			players[i].check();
 		}
+		
 		System.out.println("\n\nWygral gracz "
 				+ kr.ustal_zwyciezce(players).nazwa_gracza + "\n\n");
 
