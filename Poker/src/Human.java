@@ -22,13 +22,13 @@ public final class Human extends Player {
 
 
 	public int wymien_karty() {
-		System.out.print("Czy chcesz wymieniæ kartê y/n ");
+		System.out.print("Czy chcesz wymienic karty y/n ");
 		Scanner odczyt = new Scanner(System.in);
 		String decyzja;
 		decyzja = odczyt.next();
 		int ilosc = 0;
 		if (decyzja.startsWith("y")) {
-			System.out.print("\nPodaj ile kart chcesz wymieniæ, 0-4: ");
+			System.out.print("\nPodaj ile kart chcesz wymienic, 0-4: ");
 			ilosc = odczyt.nextInt();
 			int wybor = 0;
 			for (int i = 0; i < ilosc; i++) {
