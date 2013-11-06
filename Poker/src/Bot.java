@@ -13,7 +13,7 @@ public final class Bot extends Player {
 
 	Bot(String name) {
 		this.ilosc_kart = 0;
-		karty_na_reku = new LinkedList();
+		karty_na_reku = new LinkedList<Card>();
 		this.nazwa_gracza = name;
 		randomizer = new Random();
 

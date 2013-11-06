@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -20,13 +19,18 @@ public class Table {
 		ilosc_graczy = gracze;
 		players = new Player[ilosc_graczy];
 		boty = new Bot[ilosc_graczy - 1];
+		
+
+	}
+
+	public void gramy() {
 		System.out.println(ilosc_graczy);
 		Scanner odczyt = new Scanner(System.in);
 
 		System.out.println("Podaj swoj nick\n");
 
 		String imie = odczyt.nextLine();
-
+		
 		Krupier kr = new Krupier();
 
 		Human p1 = new Human(imie);
@@ -59,13 +63,12 @@ public class Table {
 				boty[i].arrange();
 			}
 		}
-		
-		int do_wymiany=-1;
-		while(do_wymiany==-1){
-		
-		do_wymiany=p1.wymien_karty();
-		
-			
+
+		int do_wymiany = -1;
+		while (do_wymiany == -1) {
+
+			do_wymiany = p1.wymien_karty();
+
 		}
 		for (int i = 0; i < do_wymiany; i++) {
 			p1.get_card(kr.wydaj_karte());
@@ -75,16 +78,16 @@ public class Table {
 		for (int i = 0; i < ilosc_graczy; i++) {
 			players[i].check();
 		}
-		
+
 		System.out.println("\n\nWygral gracz "
-				+ kr.ustal_zwyciezce(players).nazwa_gracza + "\n\n");
+				+ kr.ustal_zwyciezce(players).nazwa_gracza+" !!!!" );
 
 		for (int i = 0; i < ilosc_graczy; i++) {
 			System.out.print("\n\nKarty Gracza: " + players[i].nazwa_gracza
 					+ ":\n");
 			players[i].draw();
 		}
-
-	}
+		
+		odczyt.close();}
 
 }

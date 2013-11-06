@@ -14,10 +14,10 @@ public class Deck {
  */
 	Deck() {
 		// figura, kolor, obrazek
-		deck_of_cards=new LinkedList();
+		deck_of_cards=new LinkedList<Card>();
 		for (short i = 2; i < 15; i++) {
 			for (short j = 0; j < 4; j++)
-				deck_of_cards.add(new Card(i, j, (short) 0));}
+				deck_of_cards.add(new Card(i, j));}
 		
 	
 

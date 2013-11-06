@@ -16,7 +16,7 @@ public final class Human extends Player {
 
 	Human(String name) {
 		this.ilosc_kart = 0;
-		this.karty_na_reku = new LinkedList();
+		this.karty_na_reku = new LinkedList<Card>();
 		nazwa_gracza = name;
 	}
 
@@ -40,34 +40,43 @@ public final class Human extends Player {
 				ilosc = odczyt.nextInt();
 			} catch (InputMismatchException zly_index) {
 				System.out.println("Cos ci nie wyszlo, spróbuj jeszcze raz\n ");
+				odczyt.close();
 				return -1;
 
 			}
-			if (ilosc >= ilosc_kart)
-				return -1;
+			if (ilosc >= ilosc_kart){
+				odczyt.close();
+				return -1;}
 			int wybor = 0;
 			for (int i = 0; i < ilosc; i++) {
 				draw();
-				try{
-				System.out.print("\n\nKtora karte chesz wymienic, 1 do: "+ilosc_kart);
-				wybor = odczyt.nextInt();
-				if ((wybor > ilosc_kart)||(wybor<=0)) {
-					System.out.println("Nie masz karty o tym indeksie");
-					i--;
-				} else {
+				try {
+					System.out.print("\n\nKtora karte chesz wymienic, 1 do: "
+							+ ilosc_kart);
+					wybor = odczyt.nextInt();
+					if ((wybor > ilosc_kart) || (wybor <= 0)) {
+						System.out.println("Nie masz karty o tym indeksie");
+						i--;
+					} else {
 						ilosc_kart--;
-					karty_na_reku.remove(wybor - 1);
-				}}
-				catch(InputMismatchException zly_index2){
-					System.out.println("To nie jest index karty, sprobuj od 0 do"+ilosc_kart);
+						karty_na_reku.remove(wybor - 1);
+					}
+				} catch (InputMismatchException zly_index2) {
+					System.out
+							.println("To nie jest index karty, sprobuj od 0 do"
+									+ ilosc_kart);
 					i--;
 					odczyt.nextLine();
 				}
+				odczyt.close();
 			}
-		} else if (decyzja.startsWith("n"))
+		} else if (decyzja.startsWith("n")) {
+			odczyt.close();
 			return ilosc;
-		else
+		} else {
+			odczyt.close();
 			return -1;
+		}
 		return ilosc;
 	}
 
