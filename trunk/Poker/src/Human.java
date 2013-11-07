@@ -40,12 +40,12 @@ public final class Human extends Player {
 				ilosc = odczyt.nextInt();
 			} catch (InputMismatchException zly_index) {
 				System.out.println("Cos ci nie wyszlo, spróbuj jeszcze raz\n ");
-				odczyt.close();
+				//odczyt.close();
 				return -1;
 
 			}
 			if (ilosc >= ilosc_kart){
-				odczyt.close();
+				//odczyt.close();
 				return -1;}
 			int wybor = 0;
 			for (int i = 0; i < ilosc; i++) {
@@ -75,7 +75,7 @@ public final class Human extends Player {
 			odczyt.close();
 			return ilosc;
 		} else {
-			odczyt.close();
+			//odczyt.close();
 			return -1;
 		}
 		return ilosc;
