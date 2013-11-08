@@ -20,7 +20,7 @@ public class main {
 				 gra= new Table(liczba_graczy);
 				 gra.gramy();
 			} else
-				System.out.println("Nie dozwolona liczba graczy");
+				System.out.println("Niedozwolona liczba graczy");
 			odczyt.close();
 		} catch (InputMismatchException oy) {
 			System.out.println("Cos ci nie wyszlo, spróbuj jeszcze raz\n ");
