@@ -34,7 +34,7 @@ public final class Bot extends Player {
 			ilosc_kart--;
 			i++;
 		}
-
+/**test**/
 		return poz;
 
 	}
