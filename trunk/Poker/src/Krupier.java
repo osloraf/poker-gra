@@ -28,11 +28,13 @@ public class Krupier extends Deck {
 	 *            rozmiar talii
 	 */
 	int rozmiar = 52;
+	public int minimal_raise;
 
 	Krupier() {
 		deck = new Deck();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
+		minimal_raise=5;
 		// rozmiar=52;
 	}
 
