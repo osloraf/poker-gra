@@ -13,33 +13,50 @@ public class Table {
 	int ilosc_graczy;
 	Player[] players;
 	Bot[] boty;
+	Human human;
+	Krupier kr;
+	Scanner odczyt = new Scanner(System.in);
 
 	Table(int gracze) {
 
 		ilosc_graczy = gracze;
 		players = new Player[ilosc_graczy];
 		boty = new Bot[ilosc_graczy - 1];
-		
+		kr = new Krupier();
 
 	}
 
-	public void gramy() {
-		System.out.println(ilosc_graczy);
-		Scanner odczyt = new Scanner(System.in);
+	/**
+	 * Odpowiada za sesje przy stole, czyli za kilka gier
+	 */
+	public void new_sesion() {
 
 		System.out.println("Podaj swoj nick\n");
 
 		String imie = odczyt.nextLine();
-		
-		Krupier kr = new Krupier();
 
-		Human p1 = new Human(imie);
+		human = new Human(imie);
 
-		players[0] = p1;
+		players[0] = human;
 		for (int i = 1; i < ilosc_graczy; i++) {
 			boty[i - 1] = new Bot("bot_" + i);
 			players[i] = boty[i - 1];
 		}
+		short next_game = 2;
+		do {
+			rozgrywka();
+			System.out.println("Czy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
+			next_game = odczyt.nextShort();
+		} while (next_game == 1);
+		System.out.println("Dziêkujemy za grê");
+
+	}
+
+	/**
+	 * Odpowiada za jedn¹ konkretn¹ rozgrywkê
+	 */
+	private void rozgrywka() {
+
 		/**
 		 * Rozdaje karty
 		 */
@@ -67,11 +84,11 @@ public class Table {
 		int do_wymiany = -1;
 		while (do_wymiany == -1) {
 
-			do_wymiany = p1.wymien_karty();
+			do_wymiany = human.wymien_karty();
 
 		}
 		for (int i = 0; i < do_wymiany; i++) {
-			p1.get_card(kr.wydaj_karte());
+			human.get_card(kr.wydaj_karte());
 		}
 		players[0].arrange();
 		players[0].draw();
@@ -80,14 +97,15 @@ public class Table {
 		}
 
 		System.out.println("\n\nWygral gracz "
-				+ kr.ustal_zwyciezce(players).nazwa_gracza+" !!!!" );
+				+ kr.ustal_zwyciezce(players).nazwa_gracza + " !!!!");
 
 		for (int i = 0; i < ilosc_graczy; i++) {
 			System.out.print("\n\nKarty Gracza: " + players[i].nazwa_gracza
 					+ ":\n");
 			players[i].draw();
 		}
-		
-		odczyt.close();}
+
+		odczyt.close();
+	}
 
 }
