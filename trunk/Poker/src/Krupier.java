@@ -7,11 +7,6 @@ import java.util.Random;
  * 
  */
 public class Krupier extends Deck {
-	/**
-	 * @param deck
-	 *            obiekt reprezentujacy talie kart
-	 */
-	Deck deck;
 	public Boolean remis = false;
 	/**
 	 * @param random
@@ -32,18 +27,30 @@ public class Krupier extends Deck {
 	public static Bet[] bets;
 
 	Krupier(int gracze) {
-		deck = new Deck();
+		reset();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
 		minimal_raise = 5;
-		bets=new Bet[Table.ilosc_graczy];
-		for(int i=0;i<bets.length;i++)
-		{
-			bets[i].gamer=Table.get_players()[i];
-			bets[i].money=minimal_raise;
+		bets = new Bet[Table.ilosc_graczy];
+		for (int i = 0; i < bets.length; i++) {
+			bets[i].gamer = Table.get_players()[i];
+			bets[i].money = minimal_raise;
 		}
-		
+
 		// rozmiar=52;
+	}
+
+	public void reset() {
+		create_Deck();
+		ilosc_kart_wydanych=0;
+		
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
+			try {
+				Table.players[i].clear_cards();
+			} catch (java.lang.NullPointerException e) {
+
+			}
+		}
 	}
 
 	/**
@@ -56,8 +63,8 @@ public class Krupier extends Deck {
 
 		ilosc_kart_wydanych++;
 		Card help = null;
-		help = deck.deck_of_cards.get(karta);
-		deck.deck_of_cards.remove(karta);
+		help = Deck.deck_of_cards.get(karta);
+		Deck.deck_of_cards.remove(karta);
 		return help;
 
 	}
@@ -140,7 +147,7 @@ public class Krupier extends Deck {
 	}
 
 	public void przyjmij_karte(Card card) {
-		deck.deck_of_cards.addLast(card);
+		Deck.deck_of_cards.addLast(card);
 
 	}
 

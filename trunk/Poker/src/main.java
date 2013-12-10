@@ -23,11 +23,12 @@ public class main {
 					liczba_graczy++;
 					System.out.println("Zaczynamy gre dla " + liczba_graczy
 							+ " graczy\n");
+					
 					gra = new Table(liczba_graczy);
 					gra.new_sesion();
 				} else
 					System.out.println("Niedozwolona liczba graczy");
-				odczyt.close();
+				
 			}
 		} catch (InputMismatchException oy) {
 			System.out.println("Cos ci nie wyszlo, sprobuj jeszcze raz\n ");

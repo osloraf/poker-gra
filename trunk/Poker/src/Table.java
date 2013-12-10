@@ -17,7 +17,7 @@ public class Table {
 	Bot[] boty;
 	Human human;
 	Krupier kr;
-	Scanner odczyt = new Scanner(System.in);
+	Scanner odczyt2 = new Scanner(System.in);
 
 	Table(int gracze) {
 
@@ -40,7 +40,7 @@ public class Table {
 
 		System.out.println("Podaj swoj nick\n");
 
-		String imie = odczyt.nextLine();
+		String imie = odczyt2.nextLine();
 		
 		int ilosc_kasy=50;
 
@@ -51,14 +51,18 @@ public class Table {
 			boty[i - 1] = new Bot("bot_" + i, ilosc_kasy);
 			players[i] = boty[i - 1];
 		}
-		short next_game = 2;
+		int next_game = 2;
 		do {
-
+			kr.reset();
 			rozgrywka();
-			System.out.println("Czy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
-			next_game = odczyt.nextShort();
-		} while (next_game == 1);
+			odczyt2.reset();
+			System.out.println("\n\n\nCzy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
+	
+			
+			next_game = odczyt2.nextInt();
+		} while (ilosc_graczy>1);
 		System.out.println("Dziêkujemy za grê");
+		odczyt2.close();
 
 	}
 
@@ -127,7 +131,6 @@ public class Table {
 			players[i].draw();
 		}
 
-		odczyt.close();
 	}
 
 }

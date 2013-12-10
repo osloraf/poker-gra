@@ -69,6 +69,11 @@ public abstract class Player {
 		return this.weight_conf;
 
 	}
+	public void clear_cards()
+	{
+		this.karty_na_reku.clear();
+		ilosc_kart=0;
+	}
 
 	public int get_card_weight() {
 
