@@ -28,14 +28,21 @@ public class Krupier extends Deck {
 	 *            rozmiar talii
 	 */
 	int rozmiar = 52;
-	public int minimal_raise;
-	public int ilosc_graczy;
+	public static int minimal_raise;
+	public static Bet[] bets;
 
 	Krupier(int gracze) {
 		deck = new Deck();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
 		minimal_raise = 5;
+		bets=new Bet[Table.ilosc_graczy];
+		for(int i=0;i<bets.length;i++)
+		{
+			bets[i].gamer=Table.get_players()[i];
+			bets[i].money=minimal_raise;
+		}
+		
 		// rozmiar=52;
 	}
 
@@ -68,7 +75,7 @@ public class Krupier extends Deck {
 	}
 
 	public void sprawdz_konf(Player players[]) {
-		for (int i = 0; i < ilosc_graczy; i++) {
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			players[i].weight_conf = Check_conf.check_conf(players[i]
 					.get_cards());
 			players[i].weight_card = Check_conf.weight_of_card;
