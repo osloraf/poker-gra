@@ -11,14 +11,20 @@ import java.util.Random;
  * 
  */
 public abstract class Player {
-	@SuppressWarnings("unused")
-	private int money;
+	
+	protected int money;
 	protected int ilosc_kart;
 	public String nazwa_gracza;
 	protected LinkedList<Card> karty_na_reku;
 	protected Random randomizer;
 	protected int weight_conf = 0;
 	protected int weight_card = 0;
+	
+	/**
+	 * Funkcja ma wykonywaæ ruchy w danej turze gry gracza
+	 * @return rodzaj ruchu, 0 gdy siê poddaje
+	 */
+	public abstract int make_move();
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy
@@ -93,6 +99,7 @@ public abstract class Player {
 
 		return nazwa_gracza;
 	}
+	
 
 	public static class Configurations {
 		public static int weight_of_card = 0;

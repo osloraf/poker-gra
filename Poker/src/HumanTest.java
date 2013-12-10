@@ -27,7 +27,7 @@ public class HumanTest {
 
 	@Test
 	public void test() {
-		Human h1=new Human("czlek");
+		Human h1=new Human("czlek",50);
 		assertEquals("czlek", h1.get_name());
 	}
 
