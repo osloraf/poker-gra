@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import sun.misc.Cleaner;
+
 /**
  * 
  */
@@ -44,6 +46,7 @@ public class Table {
 		}
 		short next_game = 2;
 		do {
+			
 			rozgrywka();
 			System.out.println("Czy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
 			next_game = odczyt.nextShort();
