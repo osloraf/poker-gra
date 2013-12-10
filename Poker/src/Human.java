@@ -72,9 +72,9 @@ public final class Human extends Player {
 				}
 				
 			}
-			odczyt.close();
+			
 		} else if (decyzja.startsWith("n")) {
-			odczyt.close();
+			
 			return ilosc;
 		} else {
 			//odczyt.close();
