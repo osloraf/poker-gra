@@ -32,7 +32,7 @@ public class KrupierTest {
 
 	@Test
 	public void testWydaj_karte() {
-		Krupier tester = new Krupier();
+		Krupier tester = new Krupier(4);
 		assertEquals("wynik powinien byc 0", 0, tester.ilosc_kart_wydanych);
 		Card karta=tester.wydaj_karte();
 		tester.przyjmij_karte(karta);

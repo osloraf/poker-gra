@@ -29,12 +29,13 @@ public class Krupier extends Deck {
 	 */
 	int rozmiar = 52;
 	public int minimal_raise;
+	public int ilosc_graczy;
 
-	Krupier() {
+	Krupier(int gracze) {
 		deck = new Deck();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
-		minimal_raise=5;
+		minimal_raise = 5;
 		// rozmiar=52;
 	}
 
@@ -66,58 +67,65 @@ public class Krupier extends Deck {
 
 	}
 
+	public void sprawdz_konf(Player players[]) {
+		for (int i = 0; i < ilosc_graczy; i++) {
+			players[i].weight_conf = Check_conf.check_conf(players[i]
+					.get_cards());
+			players[i].weight_card = Check_conf.weight_of_card;
+		}
+	}
+
 	public Player ustal_zwyciezce(Player players[]) {
-		
+
+		sprawdz_konf(players);
 		sort_on_configuration(players);
-		int wygrywajacy=ilosc_zwyciezcow(players);
-		if(wygrywajacy>1)
-		{
+		int wygrywajacy = ilosc_zwyciezcow(players);
+		if (wygrywajacy > 1) {
 			sort_on_card(players, wygrywajacy);
 		}
 
 		return players[0];
 	}
-	private void sort_on_configuration(Player[] players)
-	{
+
+	private void sort_on_configuration(Player[] players) {
 		int size = players.length;
-		
+
 		for (int i = 0; i < size; i++) {
-			for (int j = 1; j < size-i; j++) {
-				if (players[j-1].get_conf_weight() < players[j].get_conf_weight()) {
-					Player temp = players[j-1];
-					players[j-1] = players[j];
+			for (int j = 1; j < size - i; j++) {
+				if (players[j - 1].get_conf_weight() < players[j]
+						.get_conf_weight()) {
+					Player temp = players[j - 1];
+					players[j - 1] = players[j];
 					players[j] = temp;
 				}
 			}
-			
+
 		}
 	}
-	private void sort_on_card(Player[] players, int ilosc_wygrywajacych)
-	{
+
+	private void sort_on_card(Player[] players, int ilosc_wygrywajacych) {
 		int size = ilosc_wygrywajacych;
-		
+
 		for (int i = 0; i < size; i++) {
-			for (int j = 1; j < size-i; j++) {
-				if (players[j-1].get_card_weight() < players[j].get_card_weight()) {
-					Player temp = players[j-1];
-					players[j-1] = players[j];
+			for (int j = 1; j < size - i; j++) {
+				if (players[j - 1].get_card_weight() < players[j]
+						.get_card_weight()) {
+					Player temp = players[j - 1];
+					players[j - 1] = players[j];
 					players[j] = temp;
 				}
 			}
-			
+
 		}
 	}
-	private int ilosc_zwyciezcow(Player[] players)
-	{
-		int ilosc=1;
-		for(int i=0;i<players.length-1;i++)
-		{
-			if(players[i].get_conf_weight()==players[i+1].get_conf_weight())
-			{
+
+	private int ilosc_zwyciezcow(Player[] players) {
+		int ilosc = 1;
+		for (int i = 0; i < players.length - 1; i++) {
+			if (players[i].get_conf_weight() == players[i + 1]
+					.get_conf_weight()) {
 				ilosc++;
-			}
-			else
-			{
+			} else {
 				return ilosc;
 			}
 		}
@@ -130,6 +138,3 @@ public class Krupier extends Deck {
 	}
 
 }
-
-
-

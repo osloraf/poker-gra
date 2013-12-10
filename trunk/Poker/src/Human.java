@@ -19,6 +19,7 @@ public final class Human extends Player {
 		this.karty_na_reku = new LinkedList<Card>();
 		nazwa_gracza = name;
 		this.money=casch;
+		bet=null;
 	}
 
 	/**
@@ -84,7 +85,7 @@ public final class Human extends Player {
 
 	@Override
 	public int make_move() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

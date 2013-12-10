@@ -17,6 +17,7 @@ public final class Bot extends Player {
 		this.nazwa_gracza = name;
 		randomizer = new Random();
 		money=casch;
+		bet=null;
 
 	}
 
@@ -41,7 +42,7 @@ public final class Bot extends Player {
 	}
 
 	public int make_move() {
-		// TODO Auto-generated method stub
+		Move.make_move(this);
 		return 0;
 	}
 
