@@ -12,8 +12,8 @@ import sun.misc.Cleaner;
  */
 public class Table {
 
-	int ilosc_graczy;
-	Player[] players;
+	static int ilosc_graczy;
+	static Player[] players;
 	Bot[] boty;
 	Human human;
 	Krupier kr;
@@ -26,6 +26,11 @@ public class Table {
 		boty = new Bot[ilosc_graczy - 1];
 		kr = new Krupier(gracze);
 
+	}
+	
+	public static Player[] get_players()
+	{
+		return players;
 	}
 
 	/**
