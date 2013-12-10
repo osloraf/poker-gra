@@ -24,7 +24,7 @@ public class Table {
 		ilosc_graczy = gracze;
 		players = new Player[ilosc_graczy];
 		boty = new Bot[ilosc_graczy - 1];
-		kr = new Krupier();
+		kr = new Krupier(gracze);
 
 	}
 
