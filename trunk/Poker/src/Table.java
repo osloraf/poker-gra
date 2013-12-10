@@ -36,17 +36,19 @@ public class Table {
 		System.out.println("Podaj swoj nick\n");
 
 		String imie = odczyt.nextLine();
+		
+		int ilosc_kasy=50;
 
-		human = new Human(imie);
+		human = new Human(imie, ilosc_kasy);
 
 		players[0] = human;
 		for (int i = 1; i < ilosc_graczy; i++) {
-			boty[i - 1] = new Bot("bot_" + i);
+			boty[i - 1] = new Bot("bot_" + i, ilosc_kasy);
 			players[i] = boty[i - 1];
 		}
 		short next_game = 2;
 		do {
-			
+
 			rozgrywka();
 			System.out.println("Czy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
 			next_game = odczyt.nextShort();
@@ -73,7 +75,13 @@ public class Table {
 
 		}
 		players[0].draw();
-
+		
+		/*
+		 * 1 licytacja
+		 */
+		
+		//licytuj()
+		
 		for (int i = 0; i < ilosc_graczy - 1; i++) {
 			if (boty[i].pragnienie()) {
 				short l_kart = boty[i].wymien_karty(); // liczba kart do wymiany
@@ -84,17 +92,23 @@ public class Table {
 			}
 		}
 
-		int do_wymiany = -1;
-		while (do_wymiany == -1) {
+		int do_wymiany = human.wymien_karty();
 
-			do_wymiany = human.wymien_karty();
-
-		}
 		for (int i = 0; i < do_wymiany; i++) {
 			human.get_card(kr.wydaj_karte());
 		}
+		
 		players[0].arrange();
 		players[0].draw();
+		
+		/*
+		 * 2 licytacja
+		 */
+		
+		// licytuj_cd();
+		
+		//wyniki
+		
 		for (int i = 0; i < ilosc_graczy; i++) {
 			players[i].check();
 		}

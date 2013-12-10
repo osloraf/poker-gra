@@ -14,10 +14,11 @@ import java.util.Scanner;
  */
 public final class Human extends Player {
 
-	Human(String name) {
+	Human(String name, int casch) {
 		this.ilosc_kart = 0;
 		this.karty_na_reku = new LinkedList<Card>();
 		nazwa_gracza = name;
+		this.money=casch;
 	}
 
 	/**
@@ -79,6 +80,12 @@ public final class Human extends Player {
 			return -1;
 		}
 		return ilosc;
+	}
+
+	@Override
+	public int make_move() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

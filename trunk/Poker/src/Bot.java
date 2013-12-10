@@ -11,11 +11,12 @@ public final class Bot extends Player {
 	 * @param args
 	 */
 
-	Bot(String name) {
+	Bot(String name, int casch) {
 		this.ilosc_kart = 0;
 		karty_na_reku = new LinkedList<Card>();
 		this.nazwa_gracza = name;
 		randomizer = new Random();
+		money=casch;
 
 	}
 
@@ -37,6 +38,11 @@ public final class Bot extends Player {
 /**test**/
 		return poz;
 
+	}
+
+	public int make_move() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
