@@ -17,7 +17,6 @@ public final class Bot extends Player {
 		this.nazwa_gracza = name;
 		randomizer = new Random();
 		money=casch;
-		bet=null;
 
 	}
 

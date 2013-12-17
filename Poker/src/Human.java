@@ -14,12 +14,12 @@ import java.util.Scanner;
  */
 public final class Human extends Player {
 
+	Scanner odczyt;
 	Human(String name, int casch) {
 		this.ilosc_kart = 0;
 		this.karty_na_reku = new LinkedList<Card>();
 		nazwa_gracza = name;
 		this.money=casch;
-		bet=null;
 	}
 
 	/**
@@ -32,7 +32,7 @@ public final class Human extends Player {
 	public int wymien_karty() {
 
 		System.out.print("Czy chcesz wymienic karty y/n ");
-		Scanner odczyt = new Scanner(System.in);
+		odczyt = new Scanner(System.in);
 		String decyzja;
 		decyzja = odczyt.next();
 		int ilosc = 0;
@@ -85,6 +85,18 @@ public final class Human extends Player {
 
 	@Override
 	public int make_move() {
+		Krupier.show_bets();
+		System.out.println("\nPodaj jaki ruch chcesz wykonac\n1.Czekaj \n2.Zloz zaklad \n3.Przebij zaklad \n4.Wyrownaj zaklad \n5.Poddaj sie \n6.Zagraj va-bank");
+		int decision=odczyt.nextInt();
+		switch (decision)
+		{
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		}
 		
 		return 0;
 	}
