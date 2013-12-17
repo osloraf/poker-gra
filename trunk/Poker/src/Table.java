@@ -14,10 +14,10 @@ public class Table {
 
 	static int ilosc_graczy;
 	static Player[] players;
-	Bot[] boty;
-	Human human;
-	Krupier kr;
-	Scanner odczyt2 = new Scanner(System.in);
+	private Bot[] boty;
+	private Human human;
+	private Krupier kr;
+	private Scanner odczyt2 = new Scanner(System.in);
 
 	Table(int gracze) {
 
@@ -57,7 +57,7 @@ public class Table {
 			rozgrywka();
 			odczyt2.reset();
 			System.out.println("\n\n\nCzy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
-	
+			
 			
 			next_game = odczyt2.nextInt();
 		} while (ilosc_graczy>1);
@@ -131,6 +131,30 @@ public class Table {
 			players[i].draw();
 		}
 
+	}
+	private void show_results()
+	{
+		
+	}
+	public void delete_player(String player_name)
+	{
+		for(int i=0;i<ilosc_graczy;i++)
+		{
+			if(players[i].nazwa_gracza.equals(player_name))
+			{
+				if(i==0)
+				{
+					System.out.println("Niestety zrezygnowales z gry, lub Cie na nia nie stac, z czego jest nam bardzo przykro. \nGra sie zakonczy");
+					System.exit(0);
+				}
+				System.out.println("Gracz "+players[i].nazwa_gracza+" zrezygnowa³ z gry, lub go na ni¹ nie staæ\n");
+				players[i]=players[ilosc_graczy-1];
+				//players[ilosc_graczy-1]=null;
+				ilosc_graczy--;
+				
+				
+			}
+		}
 	}
 
 }

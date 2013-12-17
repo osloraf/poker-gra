@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -24,32 +25,110 @@ public class Krupier extends Deck {
 	 */
 	int rozmiar = 52;
 	public static int minimal_raise;
-	public static Bet[] bets;
+	private static LinkedList<Bet> bets;
 
 	Krupier(int gracze) {
 		reset();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
 		minimal_raise = 5;
-		bets = new Bet[Table.ilosc_graczy];
-		for (int i = 0; i < bets.length; i++) {
-			bets[i].gamer = Table.get_players()[i];
-			bets[i].money = minimal_raise;
+		bets = new LinkedList<Bet>();
+
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
+			bets.add(new Bet(Table.players[i]));
+			Table.players[i].setBet(bets.getLast());
+			Table.players[i].nr_gracza = i;
 		}
 
 		// rozmiar=52;
 	}
 
+	Boolean check(Player player) {
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
+			if (bets.get(i).getMoney() != minimal_raise) {
+				return false;
+			}
+		}
+		return true;
+
+	}
+
+	Boolean call(Player player) {
+		int max_bet = 0;
+		for (int i = 0; i < bets.size(); i++) {
+			if (max_bet < Table.players[i].bet.getMoney())
+				max_bet = Table.players[i].bet.getMoney();
+		}
+		if (max_bet != player.bet.getMoney()) {
+			if (player.get_money() >= max_bet) {
+				bets.get(player.nr_gracza).update_bet(
+						max_bet - player.bet.getMoney());
+				return true;
+			}
+
+		}
+		return false;
+
+	}
+
+	Boolean raise(Player player) {
+		if((call(player)) &&(player.get_money()>0))
+		{
+			bets.get(player.nr_gracza).update_bet(1);
+			return true;
+		}
+		return false;
+		
+
+	}
+
+	void fold(Player player) {
+
+	}
+
+	Boolean bet(Player player) {
+		for(int i=0;i<Table.ilosc_graczy;i++)
+		{
+			if(bets.get(i).getMoney()!=minimal_raise)
+				return false;
+		}
+		player.bet.update_bet(1);
+		return true;
+
+	}
+
+	public void all_in(Player player) {
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
+			if (Table.players[i].nr_gracza != player.nr_gracza) {
+
+			}
+		}
+
+	}
+
 	public void reset() {
 		create_Deck();
-		ilosc_kart_wydanych=0;
-		
+		ilosc_kart_wydanych = 0;
+
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			try {
 				Table.players[i].clear_cards();
 			} catch (java.lang.NullPointerException e) {
 
 			}
+		}
+	}
+
+	public void end_of_game() {
+		if (ilosc_zwyciezcow(Table.players) > 1) {
+			for (int i = 0; i < Table.ilosc_graczy; i++)
+				bets.get(i).setMoney(0);
+
+		} else {
+			int casch = 0;
+			for (int i = 0; i < Table.ilosc_graczy; i++)
+				casch += bets.get(i).getMoney();
+			Table.players[0].money += casch;
 		}
 	}
 
@@ -149,6 +228,17 @@ public class Krupier extends Deck {
 	public void przyjmij_karte(Card card) {
 		Deck.deck_of_cards.addLast(card);
 
+	}
+
+	private static void show_bet(int index) {
+
+		System.out.println("Zak³ad gracza " + bets.get(index).gamer.get_name()
+				+ " to " + bets.get(index).getMoney());
+	}
+
+	public static void show_bets() {
+		for (int i = 0; i < Table.ilosc_graczy; i++)
+			show_bet(i);
 	}
 
 }

@@ -19,6 +19,7 @@ public abstract class Player {
 	protected Random randomizer;
 	public int weight_conf = 0;
 	public int weight_card = 0;
+	public int nr_gracza;
 	protected Bet bet;
 	
 	/**
@@ -39,6 +40,18 @@ public abstract class Player {
 		karty_na_reku.add(karta);
 		ilosc_kart++;
 	};
+	public void setBet(Bet b)
+	{
+		bet=b;	
+	}
+	public Bet getBet()
+	{
+		return bet;
+	}
+	public int get_nr_gracza()
+	{
+		return nr_gracza;
+	}
 
 	/**
 	 * Uklada karty w kolejnosci od najslabszej figury do najmocniejszej
@@ -62,6 +75,14 @@ public abstract class Player {
 		
 		this.weight_conf = Check_conf.check_conf(karty_na_reku);
 		weight_card = Check_conf.weight_of_card;
+	}
+	public int get_money()
+	{
+		return this.money;
+	}
+	public void set_money(int ilosc)
+	{
+		this.money=ilosc;
 	}
 
 	public int get_conf_weight() {
