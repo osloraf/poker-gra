@@ -15,11 +15,12 @@ import java.util.Scanner;
 public final class Human extends Player {
 
 	Scanner odczyt;
+
 	Human(String name, int casch) {
 		this.ilosc_kart = 0;
 		this.karty_na_reku = new LinkedList<Card>();
 		nazwa_gracza = name;
-		this.money=casch;
+		this.money = casch;
 	}
 
 	/**
@@ -41,14 +42,16 @@ public final class Human extends Player {
 				System.out.print("\nPodaj ile kart chcesz wymienic, 0-4: ");
 				ilosc = odczyt.nextInt();
 			} catch (InputMismatchException zly_index) {
-				System.out.println("Cos ci nie wyszlo, sprÃ³buj jeszcze raz\n ");
-				//odczyt.close();
+				System.out
+						.println("Cos ci nie wyszlo, sprÃ³buj jeszcze raz\n ");
+				// odczyt.close();
 				return -1;
 
 			}
-			if (ilosc >= ilosc_kart){
-				//odczyt.close();
-				return -1;}
+			if (ilosc >= ilosc_kart) {
+				// odczyt.close();
+				return -1;
+			}
 			int wybor = 0;
 			for (int i = 0; i < ilosc; i++) {
 				draw();
@@ -70,14 +73,14 @@ public final class Human extends Player {
 					i--;
 					odczyt.nextLine();
 				}
-				
+
 			}
-			
+
 		} else if (decyzja.startsWith("n")) {
-			
+
 			return ilosc;
 		} else {
-			//odczyt.close();
+			// odczyt.close();
 			return -1;
 		}
 		return ilosc;
@@ -85,11 +88,10 @@ public final class Human extends Player {
 
 	@Override
 	public int make_move() {
-		Krupier.show_bets();
-		System.out.println("\nPodaj jaki ruch chcesz wykonac\n1.Czekaj \n2.Zloz zaklad \n3.Przebij zaklad \n4.Wyrownaj zaklad \n5.Poddaj sie \n6.Zagraj va-bank");
-		int decision=odczyt.nextInt();
-		switch (decision)
-		{
+		System.out
+				.println("\nPodaj jaki ruch chcesz wykonac\n1.Czekaj \n2.Zloz zaklad \n3.Przebij zaklad \n4.Wyrownaj zaklad \n5.Poddaj sie \n6.Zagraj va-bank");
+		int decision = odczyt.nextInt();
+		switch (decision) {
 		case 1:
 		case 2:
 		case 3:
@@ -97,8 +99,24 @@ public final class Human extends Player {
 		case 5:
 		case 6:
 		}
-		
+
 		return 0;
+	}
+
+	@Override
+	protected Boolean zagrano_all_in() {
+		System.out
+				.println("Jeden z graczy zagra³ All-in. Czy chcesz wejsc do gry, ryzykuj¹c utratê wszystkich swoich ¿etonów, lub te¿ spasowaæ i straciæ swój"
+						+ "ca³y zaklad, ktory postawiles w obecnym rozdaniu, dla przypomnienia to "
+						+ this.bet.getMoney()
+						+ ".Pamietaj ze w przypadku wygrania rozgrywki przez"
+						+ "gracza z mniejsza iloscia srodkow stracisz tylko tyle ile on posiada. Jaka decyzja? Grasz, czy nie?"
+						+ "\n1.GRAM!!! \n2.Jednak nie\n Wybor:");
+
+		int wybor = odczyt.nextInt();
+		if (wybor == 1)
+			return true;
+		return false;
 	}
 
 }

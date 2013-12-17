@@ -20,13 +20,14 @@ public abstract class Player {
 	public int weight_conf = 0;
 	public int weight_card = 0;
 	public int nr_gracza;
-	protected Bet bet;
+	protected Bet bet=null;
 	
 	/**
 	 * Funkcja ma wykonywaæ ruchy w danej turze gry gracza
 	 * @return rodzaj ruchu, 0 gdy siê poddaje
 	 */
 	public abstract int make_move();
+	protected abstract Boolean zagrano_all_in();
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy

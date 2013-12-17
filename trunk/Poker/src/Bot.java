@@ -45,4 +45,10 @@ public final class Bot extends Player {
 		return 0;
 	}
 
+	@Override
+	protected Boolean zagrano_all_in() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -33,10 +33,11 @@ public class Krupier extends Deck {
 		random = new Random();
 		minimal_raise = 5;
 		bets = new LinkedList<Bet>();
-
+		Bet b;
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			bets.add(new Bet(Table.players[i]));
-			Table.players[i].setBet(bets.getLast());
+			b=bets.getLast();
+			Table.players[i].setBet(b);
 			Table.players[i].nr_gracza = i;
 		}
 
@@ -83,6 +84,8 @@ public class Krupier extends Deck {
 	}
 
 	void fold(Player player) {
+		Table.players[player.nr_gracza]=Table.players[Table.players.length-1];
+		
 
 	}
 
@@ -100,7 +103,11 @@ public class Krupier extends Deck {
 	public void all_in(Player player) {
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			if (Table.players[i].nr_gracza != player.nr_gracza) {
-
+					Table.players[i].bet.setMoney(Table.players[i].money);
+			}
+			else
+			{
+				fold(player);
 			}
 		}
 
@@ -109,6 +116,7 @@ public class Krupier extends Deck {
 	public void reset() {
 		create_Deck();
 		ilosc_kart_wydanych = 0;
+		bets=null;
 
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			try {
@@ -159,7 +167,10 @@ public class Krupier extends Deck {
 		return null;
 
 	}
-
+	/**
+	 * Ustala jaka wage maja konfiguracje poszczegolnych graczy
+	 * @param players Gracze grajacy w grze
+	 */
 	public void sprawdz_konf(Player players[]) {
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			players[i].weight_conf = Check_conf.check_conf(players[i]
@@ -167,7 +178,11 @@ public class Krupier extends Deck {
 			players[i].weight_card = Check_conf.weight_of_card;
 		}
 	}
-
+	/**
+	 * Ustala zwyciezce i dopisuje mu wartosc wszystkich zakladow
+	 * @param players tablica grajacych w rozdaniu
+	 * @return gracz, ktory wygral rozdanie
+	 */
 	public Player ustal_zwyciezce(Player players[]) {
 
 		sprawdz_konf(players);
@@ -176,10 +191,17 @@ public class Krupier extends Deck {
 		if (wygrywajacy > 1) {
 			sort_on_card(players, wygrywajacy);
 		}
-
+		for(int i=1;i<Table.ilosc_graczy;i++)
+		{
+			players[0].money+=players[i].bet.getMoney();
+			players[i].money-=players[i].bet.getMoney();
+		}
 		return players[0];
 	}
-
+	/**
+	 * Sortuje graczy wg sily ukladu, ktory posiadaja
+	 * @param players gracze grajacy w rozdaniu
+	 */
 	private void sort_on_configuration(Player[] players) {
 		int size = players.length;
 
@@ -195,7 +217,11 @@ public class Krupier extends Deck {
 
 		}
 	}
-
+	/**
+	 * Sortuje graczy wygrywajacych po najwy¿szej karcie, jezeli nie ma jednego zwyciezcy
+	 * @param players
+	 * @param ilosc_wygrywajacych
+	 */
 	private void sort_on_card(Player[] players, int ilosc_wygrywajacych) {
 		int size = ilosc_wygrywajacych;
 
@@ -211,7 +237,11 @@ public class Krupier extends Deck {
 
 		}
 	}
-
+	/**
+	 * Zawraca ilu graczy wygra³o partiê
+	 * @param players Gracze aktualnie graj¹cy w rozdaniu
+	 * @return Ilosc zwyciezcow wg konfiguracji
+	 */
 	private int ilosc_zwyciezcow(Player[] players) {
 		int ilosc = 1;
 		for (int i = 0; i < players.length - 1; i++) {
@@ -224,18 +254,26 @@ public class Krupier extends Deck {
 		}
 		return ilosc;
 	}
-
+	/**
+	 * Dodaj karte zwrocon¹ przez gracza
+	 * @param card karta zwrocona przez gracza
+	 */
 	public void przyjmij_karte(Card card) {
 		Deck.deck_of_cards.addLast(card);
 
 	}
-
+	/**
+	 * Pokaz zaklad gracza 
+	 * @param index index gracza, ktorego zaklad pokazujemy
+	 */
 	private static void show_bet(int index) {
 
 		System.out.println("Zak³ad gracza " + bets.get(index).gamer.get_name()
 				+ " to " + bets.get(index).getMoney());
 	}
-
+	/**
+	 * pokaz zaklady wszystkich graczy
+	 */
 	public static void show_bets() {
 		for (int i = 0; i < Table.ilosc_graczy; i++)
 			show_bet(i);

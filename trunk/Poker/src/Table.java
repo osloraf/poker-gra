@@ -13,7 +13,14 @@ import sun.misc.Cleaner;
 public class Table {
 
 	static int ilosc_graczy;
+	/**
+	 * gracze, którzy graj¹ w aktualnej grze, bez tych co powiedzieli pas
+	 */
 	static Player[] players;
+	/**
+	 * tworzy zbiór graczy, którzy graj¹ waktualnej sesji gry
+	 */
+	static Player [] gracze_w_grze;
 	private Bot[] boty;
 	private Human human;
 	private Krupier kr;
@@ -24,7 +31,6 @@ public class Table {
 		ilosc_graczy = gracze;
 		players = new Player[ilosc_graczy];
 		boty = new Bot[ilosc_graczy - 1];
-		kr = new Krupier(gracze);
 
 	}
 	
@@ -45,18 +51,31 @@ public class Table {
 		int ilosc_kasy=50;
 
 		human = new Human(imie, ilosc_kasy);
+		
+		
 
 		players[0] = human;
 		for (int i = 1; i < ilosc_graczy; i++) {
 			boty[i - 1] = new Bot("bot_" + i, ilosc_kasy);
 			players[i] = boty[i - 1];
 		}
+
+		gracze_w_grze=new Player[ilosc_graczy];
+
+		
+		kr=new Krupier(ilosc_graczy);
 		int next_game = 2;
 		do {
-			kr.reset();
-			rozgrywka();
+			for(int i=0;i<ilosc_graczy;i++)
+			{
+				gracze_w_grze[i]=players[i];
+			}			
+			kr.reset();			//resetuje ustawienia krupiera
+			rozgrywka();		// odpala now¹ rozgeywkê
 			odczyt2.reset();
+			wyswietl_ranking();
 			System.out.println("\n\n\nCzy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
+			
 			
 			
 			next_game = odczyt2.nextInt();
@@ -74,6 +93,8 @@ public class Table {
 		/**
 		 * Rozdaje karty
 		 */
+		
+		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < ilosc_graczy; j++) {
 				players[j].get_card(kr.wydaj_karte());
@@ -136,6 +157,10 @@ public class Table {
 	{
 		
 	}
+	/**
+	 * Usuwa gracza z sesji gry
+	 * @param player_name Gracz do usuniêcia
+	 */
 	public void delete_player(String player_name)
 	{
 		for(int i=0;i<ilosc_graczy;i++)
@@ -155,6 +180,15 @@ public class Table {
 				
 			}
 		}
+	}
+	/**
+	 * Wyswietla aktualny stan konta graczy
+	 */
+	private void wyswietl_ranking()
+	{
+		System.out.print("\n");
+		for(int i=0;i<ilosc_graczy;i++)
+			System.out.println(gracze_w_grze[i].nazwa_gracza+" ma na koncie "+gracze_w_grze[i].money+" ");
 	}
 
 }
