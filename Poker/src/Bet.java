@@ -11,6 +11,7 @@ public class Bet {
 
 	Player gamer;
 	private int money;
+	private Boolean czy_all_in;
 	/**
 	 * 
 	 * @param cash Ilosc pieniedzy postawiona przez dana osobe
@@ -20,6 +21,7 @@ public class Bet {
 	{
 		this.gamer=player;
 		this.setMoney(Krupier.minimal_raise);
+		this.setCzy_all_in(false);
 	}
 	public void update_bet(int cash)
 	{
@@ -42,5 +44,18 @@ public class Bet {
 	public void setMoney(int money) {
 		this.money = money;
 	}
+	/**
+	 * @return the czy_all_in
+	 */
+	public Boolean getCzy_all_in() {
+		return czy_all_in;
+	}
+	/**
+	 * @param czy_all_in the czy_all_in to set
+	 */
+	public void setCzy_all_in(Boolean czy_all_in) {
+		this.czy_all_in = czy_all_in;
+	}
+	
 
 }
