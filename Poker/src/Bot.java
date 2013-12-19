@@ -40,13 +40,12 @@ public final class Bot extends Player {
 
 	}
 
-	public int make_move() {
+	public void make_move() {
 		Move.make_move(this);
-		return 0;
 	}
 
 	@Override
-	protected Boolean zagrano_all_in() {
+	public Boolean zagrano_all_in() {
 		// TODO Auto-generated method stub
 		return null;
 	}

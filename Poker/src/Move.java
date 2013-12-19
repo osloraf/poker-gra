@@ -13,7 +13,7 @@ public class Move {
 	 * 
 	 * 3. Nie bedzie go stac na wpisowe w nastepnej kolejce
 	 * @param player
-	 * @return
+	 * @return decyzja tak/nie
 	 */
 	public static Boolean graj_all_in(Bot player)
 	{

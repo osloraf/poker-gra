@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public final class Human extends Player {
 
-	Scanner odczyt;
+	Scanner odczyt = new Scanner(System.in);
 
 	Human(String name, int casch) {
 		this.ilosc_kart = 0;
@@ -33,7 +33,6 @@ public final class Human extends Player {
 	public int wymien_karty() {
 
 		System.out.print("Czy chcesz wymienic karty y/n ");
-		odczyt = new Scanner(System.in);
 		String decyzja;
 		decyzja = odczyt.next();
 		int ilosc = 0;
@@ -87,24 +86,37 @@ public final class Human extends Player {
 	}
 
 	@Override
-	public int make_move() {
+	public void make_move() {
+		System.out.println("Obecne zak³ady to:");
+		Krupier.show_bets();
 		System.out
-				.println("\nPodaj jaki ruch chcesz wykonac\n1.Czekaj \n2.Zloz zaklad \n3.Przebij zaklad \n4.Wyrownaj zaklad \n5.Poddaj sie \n6.Zagraj va-bank");
+				.println("\nPodaj jaki ruch chcesz wykonac\n1.Czekaj \n2.Zloz zaklad \n3."
+						+ "Przebij zaklad \n4.Wyrownaj zaklad \n5.Poddaj sie \n6.Zagraj va-bank");
 		int decision = odczyt.nextInt();
 		switch (decision) {
 		case 1:
+			Krupier.check(this);
+			break;
 		case 2:
+			Krupier.bet(this);
+			break;
 		case 3:
+			Krupier.raise(this, 1);
+			break;
 		case 4:
+			Krupier.call(this);
+			break;
 		case 5:
+			Krupier.fold(this);
+			break;
 		case 6:
+			Krupier.all_in(this);
+			break;
 		}
-
-		return 0;
 	}
 
 	@Override
-	protected Boolean zagrano_all_in() {
+	public Boolean zagrano_all_in() {
 		System.out
 				.println("Jeden z graczy zagra³ All-in. Czy chcesz wejsc do gry, ryzykuj¹c utratê wszystkich swoich ¿etonów, lub te¿ spasowaæ i straciæ swój"
 						+ "ca³y zaklad, ktory postawiles w obecnym rozdaniu, dla przypomnienia to "
