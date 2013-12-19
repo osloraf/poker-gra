@@ -27,7 +27,7 @@ public class Krupier extends Deck {
 	public static int minimal_raise;
 	private static LinkedList<Bet> bets;
 
-	Krupier(int gracze) {
+	public Krupier(int gracze) {
 		reset();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
@@ -44,7 +44,7 @@ public class Krupier extends Deck {
 		// rozmiar=52;
 	}
 
-	Boolean check(Player player) {
+	public static Boolean check(Player player) {
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			if (bets.get(i).getMoney() != minimal_raise) {
 				return false;
@@ -54,16 +54,18 @@ public class Krupier extends Deck {
 
 	}
 
-	Boolean call(Player player) {
+	public static Boolean call(Player player) {
 		int max_bet = 0;
+		int roznica;
 		for (int i = 0; i < bets.size(); i++) {
 			if (max_bet < Table.players[i].bet.getMoney())
 				max_bet = Table.players[i].bet.getMoney();
 		}
-		if (max_bet != player.bet.getMoney()) {
-			if (player.get_money() >= max_bet) {
+		roznica=max_bet-player.bet.getMoney();
+		if (roznica>0) {
+			if (player.get_money() >= roznica) {
 				bets.get(player.nr_gracza).update_bet(
-						max_bet - player.bet.getMoney());
+						roznica);
 				return true;
 			}
 
@@ -72,10 +74,10 @@ public class Krupier extends Deck {
 
 	}
 
-	Boolean raise(Player player) {
-		if((call(player)) &&(player.get_money()>0))
+	public static Boolean raise(Player player, int ile) {
+		if((call(player)) &&(player.get_money()>ile))
 		{
-			bets.get(player.nr_gracza).update_bet(1);
+			bets.get(player.nr_gracza).update_bet(ile);
 			return true;
 		}
 		return false;
@@ -83,13 +85,13 @@ public class Krupier extends Deck {
 
 	}
 
-	void fold(Player player) {
+	public static void fold(Player player) {
 		Table.players[player.nr_gracza]=Table.players[Table.players.length-1];
 		
 
 	}
 
-	Boolean bet(Player player) {
+	public static Boolean bet(Player player) {
 		for(int i=0;i<Table.ilosc_graczy;i++)
 		{
 			if(bets.get(i).getMoney()!=minimal_raise)
@@ -100,14 +102,13 @@ public class Krupier extends Deck {
 
 	}
 
-	public void all_in(Player player) {
-		for (int i = 0; i < Table.ilosc_graczy; i++) {
-			if (Table.players[i].nr_gracza != player.nr_gracza) {
-					Table.players[i].bet.setMoney(Table.players[i].money);
-			}
-			else
+	public static void all_in(Player player) {
+		player.bet.czy_all_in=true;
+		for(int i=0;i<Table.ilosc_graczy;i++)
+		{
+			if(Table.players[i].zagrano_all_in());
 			{
-				fold(player);
+				Table.players[i].bet.update_bet(Table.players[i].money);
 			}
 		}
 
@@ -133,10 +134,33 @@ public class Krupier extends Deck {
 				bets.get(i).setMoney(0);
 
 		} else {
+			for(int i=0;i<Table.ilosc_graczy;i++)
+			{
+				if(Table.players[i].bet.czy_all_in)
+				{
+					int casch=0;
+					Player zwyciezcza=ustal_zwyciezce(Table.players);
+					for(int j=0;i<Table.ilosc_graczy;i++)
+					{
+						if(Table.players[j].bet.getMoney()>=zwyciezcza.bet.getMoney())
+						{
+							casch+=Table.players[i].bet.getMoney();
+							Table.players[j].money+=Table.players[j].bet.getMoney()-zwyciezcza.bet.getMoney();							
+						}
+						else
+						{
+							casch+=Table.players[j].bet.getMoney();
+						}
+					}
+					zwyciezcza.money+=casch;
+					return;
+				}
+			}			
 			int casch = 0;
 			for (int i = 0; i < Table.ilosc_graczy; i++)
 				casch += bets.get(i).getMoney();
 			Table.players[0].money += casch;
+			
 		}
 	}
 

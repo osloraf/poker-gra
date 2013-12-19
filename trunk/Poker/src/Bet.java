@@ -11,7 +11,7 @@ public class Bet {
 
 	Player gamer;
 	private int money;
-	private Boolean czy_all_in;
+	public Boolean czy_all_in;
 	/**
 	 * 
 	 * @param cash Ilosc pieniedzy postawiona przez dana osobe

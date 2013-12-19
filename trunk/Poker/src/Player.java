@@ -26,8 +26,8 @@ public abstract class Player {
 	 * Funkcja ma wykonywaæ ruchy w danej turze gry gracza
 	 * @return rodzaj ruchu, 0 gdy siê poddaje
 	 */
-	public abstract int make_move();
-	protected abstract Boolean zagrano_all_in();
+	public abstract void make_move();
+	public abstract Boolean zagrano_all_in();
 
 	/**
 	 * Funkcja przyjmuje karty od krupiera i zapisuje je w tablicy
