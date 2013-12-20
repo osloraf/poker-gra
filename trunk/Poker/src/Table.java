@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import sun.misc.Cleaner;
-
 /**
  * 
  */
@@ -61,19 +59,14 @@ public class Table {
 		gracze_w_grze = new Player[ilosc_graczy];
 
 		kr = new Krupier(ilosc_graczy);
-		int next_game = 2;
 		do {
 			for (int i = 0; i < ilosc_graczy; i++) {
 				gracze_w_grze[i] = players[i];
 			}
-			kr.reset(); // resetuje ustawienia krupiera
 			rozgrywka(); // odpala now¹ rozgeywkê
+			kr.reset(); // resetuje ustawienia krupiera
 			odczyt2.reset();
 			wyswietl_ranking();
-			System.out
-					.println("\n\n\nCzy chcesz zagraæ ponowie? \n1.Tak \n2.Nie");
-
-			next_game = odczyt2.nextInt();
 		} while (ilosc_graczy > 1);
 		System.out.println("Dziêkujemy za grê");
 		odczyt2.close();
@@ -161,10 +154,6 @@ public class Table {
 					+ ":\n");
 			players[i].draw();
 		}
-
-	}
-
-	private void show_results() {
 
 	}
 
