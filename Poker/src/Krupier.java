@@ -118,7 +118,10 @@ public class Krupier extends Deck {
 		create_Deck();
 		ilosc_kart_wydanych = 0;
 		bets=null;
-
+		for(int i=0;i<Table.ilosc_graczy;i++)
+		{
+			Table.players[i].bet=new Bet(Table.players[i]);
+		}
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
 			try {
 				Table.players[i].clear_cards();

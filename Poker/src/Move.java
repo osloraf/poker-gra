@@ -1,8 +1,18 @@
 public class Move {
+	
 	public static void make_move(Bot gracz) {
-		if ((Check_conf.check_conf(gracz.get_cards()) > 1)) {
+		if (((Check_conf.check_conf(gracz.get_cards()) > 1)&& (!czy_byl_zaklad()))) {
+			Krupier.bet(gracz);
 
 		}
+		Krupier.check(gracz);
+	}
+	private static boolean czy_byl_zaklad()
+	{
+		for(int i=0;i<Table.ilosc_graczy;i++)
+			if(Table.players[i].bet.getMoney()!=Krupier.minimal_raise)
+				return false;
+		return false;
 	}
 	/**
 	 * Okresla czy bot ma wejsc do gry po zagraniu all-in, czy jednak nie. Bot wejdzie do gry jezeli:
