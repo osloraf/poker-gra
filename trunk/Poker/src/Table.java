@@ -23,7 +23,6 @@ public class Table {
 	private Human human;
 	private Krupier kr;
 	private Scanner odczyt2 = new Scanner(System.in);
-	
 
 	Table(int gracze) {
 
@@ -60,9 +59,10 @@ public class Table {
 
 		kr = new Krupier(ilosc_graczy);
 		do {
-			for (int i = 0; i < ilosc_graczy; i++) {
+			for (int i = 0; i < gracze_w_grze.length; i++) {
 				gracze_w_grze[i] = players[i];
 			}
+			ilosc_graczy = gracze_w_grze.length;
 			rozgrywka(); // odpala now¹ rozgeywkê
 			kr.reset(); // resetuje ustawienia krupiera
 			odczyt2.reset();
@@ -95,9 +95,18 @@ public class Table {
 		int obecny_gracz = 0;
 		do {
 			for (; obecny_gracz < ilosc_graczy; obecny_gracz++) {
-				players[obecny_gracz].make_move();
-				obecny_gracz=obecny_gracz%ilosc_graczy;
+
+				try {
+					players[obecny_gracz].make_move();
+				} catch (Exception e) {
+
+					zwyciezca_przed_czasem(obecny_gracz);
+					koniec_parti();
+					break;
+				}
+
 			}
+			obecny_gracz = obecny_gracz % ilosc_graczy;
 		} while (!zaklady_rowne());
 
 		/*
@@ -130,22 +139,48 @@ public class Table {
 		/*
 		 * 2 licytacja
 		 */
-		obecny_gracz=obecny_gracz%ilosc_graczy;
+		if (obecny_gracz != 0)
+			obecny_gracz++;
+		obecny_gracz = obecny_gracz % ilosc_graczy;
 
 		do {
 			for (; obecny_gracz < ilosc_graczy; obecny_gracz++) {
-				players[obecny_gracz].make_move();
-				obecny_gracz=obecny_gracz%ilosc_graczy;
+
+				try {
+					players[obecny_gracz].make_move();
+				} catch (Exception e) {
+
+					if (e.getMessage().equals("end")) {
+						zwyciezca_przed_czasem(obecny_gracz);
+						koniec_parti();
+					}
+				}
+
 			}
+			obecny_gracz = obecny_gracz % ilosc_graczy;
 		} while (!zaklady_rowne());
-		
 
 		// wyniki
 
 		for (int i = 0; i < ilosc_graczy; i++) {
-			players[i].check();
+			players[i].check_cards();
+		}
+		koniec_parti();
+
+		
+
+	}
+
+	private void zwyciezca_przed_czasem(int nr_gracza) {
+		for (int i = 0; i < gracze_w_grze.length; i++) {
+			players[nr_gracza].money += players[i].bet.getMoney();
+			if (nr_gracza != i)
+				players[i].money -= players[i].bet.getMoney();
 		}
 
+	}
+	private void koniec_parti()
+	{
 		System.out.println("\n\nWygral gracz "
 				+ kr.ustal_zwyciezce(players).nazwa_gracza + " !!!!");
 
@@ -154,7 +189,6 @@ public class Table {
 					+ ":\n");
 			players[i].draw();
 		}
-
 	}
 
 	/**
