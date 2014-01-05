@@ -25,8 +25,9 @@ public abstract class Player {
 	/**
 	 * Funkcja ma wykonywaæ ruchy w danej turze gry gracza
 	 * @return rodzaj ruchu, 0 gdy siê poddaje
+	 * @throws Exception 
 	 */
-	public abstract void make_move();
+	public abstract void make_move() throws Exception;
 	public abstract Boolean zagrano_all_in();
 
 	/**
@@ -72,7 +73,7 @@ public abstract class Player {
 		}
 	}
 
-	public void check() {
+	public void check_cards() {
 		
 		this.weight_conf = Check_conf.check_conf(karty_na_reku);
 		weight_card = Check_conf.weight_of_card;
@@ -132,6 +133,105 @@ public abstract class Player {
 
 		return nazwa_gracza;
 	}
+	protected Boolean check() {
+		for (int i = 0; i < Table.ilosc_graczy; i++) {
+			if (Krupier.bets.get(i).getMoney() != Krupier.minimal_raise) {
+				return false;
+			}
+		}
+		return true;
+
+	}
+
+	protected Boolean call() {
+		int max_bet = 0;
+		int roznica;
+		for (int i = 0; i < Krupier.bets.size(); i++) {
+			if (max_bet < Table.players[i].bet.getMoney())
+				max_bet = Table.players[i].bet.getMoney();
+		}
+		roznica=max_bet-this.bet.getMoney();
+		if (roznica>0) {
+			if (this.get_money() >= roznica) {
+				Krupier.bets.get(this.nr_gracza).update_bet(
+						roznica);
+				return true;
+			}
+
+		}
+		return false;
+
+	}
+
+	protected Boolean raise(int ile) {
+		if(call())
+			call();
+		if(money>ile)
+		{
+			Krupier.bets.get(nr_gracza).update_bet(ile);
+			return true;
+		}
+		return false;
+		
+
+	}
+
+	protected void fold() {
+		Krupier.bets.remove(nr_gracza);
+		Table.players[nr_gracza]=Table.players[Table.players.length-1];
+		Table.players[Table.players.length-1]=null;
+		Table.ilosc_graczy--;
+		
+		
+		
+
+	}
+
+	protected Boolean bet(int ile) {
+		for(int i=0;i<Table.ilosc_graczy;i++)
+		{
+			if(Krupier.bets.get(i).getMoney()!=Krupier.minimal_raise)
+				return false;
+		}
+		bet.update_bet(ile);
+		return true;
+
+	}
+
+	protected void all_in() throws Exception {
+		int ilosc_grajacych=0;
+		bet.czy_all_in=true;
+		raise(money);
+		for(int i=0;i<Table.ilosc_graczy;i++)
+		{
+			
+			if((Table.players[i].zagrano_all_in()) && (i!=nr_gracza))
+			{
+				Table.players[i].bet.update_bet(Table.players[i].money);
+				System.out.println("Gracz "+ Table.players[i].get_name()+" gra all-in");
+				ilosc_grajacych++;
+			}
+			else
+			{
+				if(i==nr_gracza)
+				{
+					Table.players[i].bet.update_bet(Table.players[i].money);
+					System.out.println("Gracz "+ Table.players[i].get_name()+" gra all-in");
+					ilosc_grajacych++;
+				}
+				else
+					System.out.println("Gracz "+ Table.players[i].get_name()+" nie gra all-in");
+			}
+				
+		}
+		if(ilosc_grajacych==1)
+		{
+			Exception e=new Exception("end");
+			throw e;
+		}
+
+	}
+
 	
 
 }

@@ -25,13 +25,13 @@ public class Krupier extends Deck {
 	 */
 	int rozmiar = 52;
 	public static int minimal_raise;
-	private static LinkedList<Bet> bets;
+	public static LinkedList<Bet> bets;
 
 	public Krupier(int gracze) {
-		reset();
 		ilosc_kart_wydanych = 0;
 		random = new Random();
 		minimal_raise = 5;
+		create_Deck();
 		bets = new LinkedList<Bet>();
 		Bet b;
 		for (int i = 0; i < Table.ilosc_graczy; i++) {
@@ -44,76 +44,7 @@ public class Krupier extends Deck {
 		// rozmiar=52;
 	}
 
-	public static Boolean check(Player player) {
-		for (int i = 0; i < Table.ilosc_graczy; i++) {
-			if (bets.get(i).getMoney() != minimal_raise) {
-				return false;
-			}
-		}
-		return true;
-
-	}
-
-	public static Boolean call(Player player) {
-		int max_bet = 0;
-		int roznica;
-		for (int i = 0; i < bets.size(); i++) {
-			if (max_bet < Table.players[i].bet.getMoney())
-				max_bet = Table.players[i].bet.getMoney();
-		}
-		roznica=max_bet-player.bet.getMoney();
-		if (roznica>0) {
-			if (player.get_money() >= roznica) {
-				bets.get(player.nr_gracza).update_bet(
-						roznica);
-				return true;
-			}
-
-		}
-		return false;
-
-	}
-
-	public static Boolean raise(Player player, int ile) {
-		if((call(player)) &&(player.get_money()>ile))
-		{
-			bets.get(player.nr_gracza).update_bet(ile);
-			return true;
-		}
-		return false;
-		
-
-	}
-
-	public static void fold(Player player) {
-		Table.players[player.nr_gracza]=Table.players[Table.players.length-1];
-		
-
-	}
-
-	public static Boolean bet(Player player) {
-		for(int i=0;i<Table.ilosc_graczy;i++)
-		{
-			if(bets.get(i).getMoney()!=minimal_raise)
-				return false;
-		}
-		player.bet.update_bet(1);
-		return true;
-
-	}
-
-	public static void all_in(Player player) {
-		player.bet.czy_all_in=true;
-		for(int i=0;i<Table.ilosc_graczy;i++)
-		{
-			if(Table.players[i].zagrano_all_in());
-			{
-				Table.players[i].bet.update_bet(Table.players[i].money);
-			}
-		}
-
-	}
-
+	
 	public void reset() {
 		create_Deck();
 		ilosc_kart_wydanych = 0;
@@ -225,6 +156,7 @@ public class Krupier extends Deck {
 		}
 		return players[0];
 	}
+	
 	/**
 	 * Sortuje graczy wg sily ukladu, ktory posiadaja
 	 * @param players gracze grajacy w rozdaniu

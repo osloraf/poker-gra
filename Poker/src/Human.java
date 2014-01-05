@@ -86,7 +86,7 @@ public final class Human extends Player {
 	}
 
 	@Override
-	public void make_move() {
+	public void make_move() throws Exception {
 		System.out.println("Obecne zak³ady to:");
 		Krupier.show_bets();
 		System.out
@@ -95,22 +95,22 @@ public final class Human extends Player {
 		int decision = odczyt.nextInt();
 		switch (decision) {
 		case 1:
-			Krupier.check(this);
+			check();
 			break;
 		case 2:
-			Krupier.bet(this);
+			bet(1);
 			break;
 		case 3:
-			Krupier.raise(this, 1);
+			raise(1);
 			break;
 		case 4:
-			Krupier.call(this);
+			call();
 			break;
 		case 5:
-			Krupier.fold(this);
+			fold();
 			break;
 		case 6:
-			Krupier.all_in(this);
+			all_in();
 			break;
 		}
 	}

@@ -20,7 +20,7 @@ public class Bet {
 	public Bet(Player player)
 	{
 		this.gamer=player;
-		this.setMoney(Krupier.minimal_raise);
+		update_bet(Krupier.minimal_raise);
 		this.setCzy_all_in(false);
 	}
 	public void update_bet(int cash)
